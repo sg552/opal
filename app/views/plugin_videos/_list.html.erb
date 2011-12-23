@@ -1,0 +1,4 @@
+<% if PluginVideo.can?(@logged_in_user, :view) %>
+	<% video_count = PluginVideo.record(item).approved.count %>
+	<%= link_to raw("#{icon("video")} #{video_count} #{PluginVideo.model_name.human(:count => video_count)}"), {:action => "view", :controller => "items", :id => item, :anchor => PluginVideo.model_name.human(:count => :other) } if video_count > 0 %>
+<% end %>

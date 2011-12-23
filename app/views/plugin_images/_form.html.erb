@@ -1,0 +1,75 @@
+<script type="text/javascript">
+$(function() {
+	$('#plugin_image_source_local').click(function() {
+		$("#remote_file").conceal();
+		$("#local_file").reveal();
+	});
+	
+	$('#plugin_image_source_remote').click(function() {
+		$("#local_file").conceal();
+		$("#remote_file").reveal();
+	});	
+});
+</script>
+
+<%= error_messages_for :image %>
+
+<%= remember_record(@record) if defined?(@record) %>
+
+<table style="width:100%" cellspacing=0 cellpadding=0>
+	<tr>
+		<td class="main">
+			<div id="" class="box_2">
+				<% if f.object.new_record? %>
+				<div class="field">
+					<h3>						
+						<%= f.radio_button(:source, :local, :checked => f.object.remote_image_url.blank?) %> <%= f.label :source_local,  t("label.from_local") %> 
+						<%= f.radio_button(:source, :remote, :checked => !f.object.remote_image_url.blank?) %> <%= f.label :source_remote,  t("label.from_web") %>
+				 	</h3>	
+					<div id="local_file" class="field" style="<%= f.object.remote_image_url.blank? ? nil : "display:none" %>">
+						<%= f.file_field :image %>								
+					</div>					
+					<div id="remote_file" class="field" style="<%= f.object.remote_image_url.blank? ? "display:none" : nil %>">
+    					<%= f.text_field :remote_image_url %>
+					</div>		
+				</div>
+				<% end %>
+				
+				<div class="field">
+					<h3><%= f.label :description %></h3>
+					<%= f.text_field :description %>					
+				</div>							
+			</div>				
+		</td>
+		<td class="side_right">
+			<div class="box_2 ">
+				<% if f.object.new_record? %>
+					<%= content_tag :div do %>
+						<%= content_tag(:h3, raw("#{icon("options")} #{t("single.effects")}")) %>
+						<div id="effects" class="field indent" >
+							<%= content_tag(:div, check_box("plugin_image[effects]", :monochrome) + label("plugin_image_effects", :monochrome, t("label.image_effect_bw").html_safe)) %>
+							<%= content_tag(:div, check_box("plugin_image[effects]", :sepia) + label("plugin_image_effects", :sepia, t("label.image_effect_sepia").html_safe)) %>
+							<%= content_tag(:div, check_box("plugin_image[effects]", :rotate_90_cw) + label("plugin_image[effects]", :rotate_90_cw, t("label.image_effect_rotate_90_cw").html_safe)) %>
+							<%= content_tag(:div, check_box("plugin_image[effects]", :rotate_90_ccw) + label("plugin_image_effects", :rotate_90_ccw, t("label.image_effect_rotate_90_ccw").html_safe)) %>
+							<%= content_tag(:div, check_box("plugin_image[effects]", :rotate_180) + label("plugin_image_effects", :rotate_180, t("label.image_effect_rotate_180").html_safe)) %>
+							<%= content_tag(:div, check_box("plugin_image[effects]", :resize, {:disabled => Setting.global_settings[:plugin_image][:resize_item_images], :checked => Setting.global_settings[:plugin_image][:resize_item_images]}) + label("plugin_image_effects", :resize, t("label.image_effect_resize", :width => @setting[:plugin_image][:item_image_width], :height => @setting[:plugin_image][:item_image_width]))) %>
+							<%= content_tag(:div, check_box("plugin_image[effects]", :watermark) + label("plugin_image_effects", :watermark, t("single.watermark").html_safe)) %>
+							<%= content_tag(:div, check_box("plugin_image[effects]", :stamp) + label("plugin_image_effects", :stamp, t("single.stamp").html_safe)) %>
+							<%= content_tag(:div, check_box("plugin_image[effects]", :negate) + label("plugin_image_effects", :negate, t("label.image_effect_negate").html_safe)) %>
+							<%= content_tag(:div, check_box("plugin_image[effects]", :polaroid) + label("plugin_image_effects", :polaroid, t("label.image_effect_polaroid").html_safe)) %>
+						</div>
+					<% end  %>
+				<% else %>
+					<%= content_tag(:div, plugin_image_thumbnail(f.object, :preview => true), :style => "text-align:center")  %>
+					<div class="sub" align=center>
+						<%= f.object.filename %>
+					</div>
+					<hr />
+					<%= content_tag(:h3, raw("#{icon("details")} #{t("label.additional_info")}")) %>
+					<%= PluginImage.human_attribute_name(:created_at) %>:  <b><%= friendly_date f.object.created_at %></b>
+					<br>
+				<% end %>
+			</div>
+		</td>
+	</tr>
+</table>

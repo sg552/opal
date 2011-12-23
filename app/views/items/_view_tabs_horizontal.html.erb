@@ -1,0 +1,25 @@
+<%= render :partial => "items/item_details", :locals => {:item => item} %>
+<div class="plugins">
+	<table style="width:100%">
+		<tr>
+			<td>
+				<ul class="plugin_tabs_horizontal"> 
+					<%  for plugin in plugins  %>
+						<% if plugin.plugin_class.can?(@logged_in_user, :view)  %>
+					    	<li><a href="#<%= plugin.model_name.human(:count => :other) %>"><%= plugin.model_name.human(:count => :other) %></a></li>
+						<% end %> 
+					<% end %>	
+				</ul>			
+				<div class="plugin_panes_horizontal"> 					
+					<%  for plugin in plugins  %>
+						<% if plugin.plugin_class.can?(@logged_in_user, :view)  %>
+						    <div>	
+								<%= render :partial => plugin.partial_path(:type => "view"), :locals => {:plugin => plugin, :item => item} %>
+							</div> 
+						<% end %>
+					<% end %>						
+				</div>					
+			</td>
+		</tr>
+	</table>	
+</div>				

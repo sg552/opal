@@ -1,0 +1,61 @@
+
+<div class="comment">
+	<a name="plugin_comment_<%= plugin_comment.id %>"></a>
+	<table>
+		<tr>
+			<td align=left class="user_column">
+				<div class="user_box">
+				 <% if !plugin_comment.user_id.nil? && plugin_comment.user_id != 0  %>
+					 <% comment_user = User.find(plugin_comment.user_id)%>
+					 <%= user_avatar(comment_user, :class => "small") %>
+					 <br>
+					 <%= link_to "#{truncate(comment_user.username, :length => 10)}", {:action => "user", :id => comment_user.id, :controller => "browse" }, :style => "font-weight:bold", :title => "#{h comment_user.username}"   %>
+					 <br>
+				   <% else %><%# an anonymous comment %>
+				   	 <% if !plugin_comment.anonymous_email.nil? %>
+						 <%= gravatar_image(plugin_comment.anonymous_email, :class => "small") %>
+					 <% else %>
+						<%#= user_avatar(nil, :class => "small") %>			 	         
+					 <% end %>
+					 <br>
+					 <%= h plugin_comment.anonymous_name %>
+					 <br>							   
+				   <% end %>
+				</div>
+			</td>
+			<td align=left class="comment_column">
+				<div class="comment_box <%= "comment_box_from_owner" if plugin_comment.user_id == plugin_comment.record.user_id %>">
+					<% content_for :record_menu_right do %>
+						<%= content_tag :li do %>										
+							<%= link_to(icon("reply") + " " + t("single.reply"), {:action => "new", :controller => "plugin_comments", :id => plugin_comment.record, :parent_id => plugin_comment.id, :record_type => plugin_comment.record_type, :record_id => plugin_comment.record_id}, :remote => true, :id => "plugin_comment_#{plugin_comment.id}_reply_link") %>
+						<% end if PluginComment.can?(@logged_in_user, :create) %>	
+					<% end %>
+
+					<%= render :partial => "plugins/record_menu", :locals => {:record => plugin_comment, :options => {:votes => true, :user => false, :date => true}} %>
+											
+					<div align=left>
+						<%= simple_format(plugin_comment.comment) %>
+					</div>
+				</div>
+			</td>
+		</tr>
+	</table>
+	<script type="text/javascript">
+		$(function(){
+			$("#plugin_comment_<%= plugin_comment.id %>_reply_link").bind({			
+				'ajax:beforeSend': function(){
+					$("#plugin_comment_<%= plugin_comment.id %>_reply").html('<%= content_tag(:div, loading, :style => "text-align:center") %>')				
+				},	
+				'ajax:success': function(event, data, status, xhr){
+					$("#plugin_comment_<%= plugin_comment.id %>_reply").html(data)
+				},			
+			});				
+		});			
+	</script>	
+	<div id="plugin_comment_<%= plugin_comment.id %>_reply">
+	</div>
+	
+	<% plugin_comment.children.each do |child| %>
+		<%= render child %>
+	<% end %>
+</div>

@@ -1,0 +1,63 @@
+<% 
+	options ||= Hash.new 
+	options[:show_title] = true if options[:show_title].nil? # show title?
+	options[:show_none_found] = true if options[:show_none_found].nil? # show message if no plugin items are found 
+%>
+<% if item.can?(@logged_in_user, :edit) %>
+	<% images = PluginImage.record(item).newest_first %>
+<% else %>
+	<% images = PluginImage.record(item).approved.newest_first %>
+<% end %>
+
+
+	<div class="plugin_box">
+		<% if options[:show_title] || PluginImage.can?(@logged_in_user, :create, :record => @record) %>
+			<div class="header title">
+				<table style="width:100%" cellpadding=0 cellspacing=0>
+					<tr>
+						<td align=left>
+							<a name="<%= plugin.model_name.human(:count => :other) %>"></a>
+							<h2 class="title"><%= images.size %> <%= plugin.model_name.human(:count => images.size) %></h2>										
+						</td>
+						<td align=right>
+							<% if images.size > 0 %> 
+								<a href="<%= images[0].image.url %>"  title="<%= h images[0].description %>" rel="colorbox_slideshow">						
+									<%= icon("images") %>
+									<%= t("single.start") %> <%= t("single.slideshow") %>
+								</a>					 	
+								<%# hidden %>
+								<% for image in images %>
+									<% if image.id != images[0].id %>
+										<a href="<%= h image.image.url %>"  title="<%= h image.description %>" rel="colorbox_slideshow" style="display:none">						
+											<img src="<%= h image.image.thumb.url %>" class="thumbnail"  />
+										</a>	
+									<% end %>
+								<% end %>				
+							<% end %>
+							<%= link_to(icon("new") + " " + t("label.item_new", :item => PluginImage.model_name.human), {:action => "new", :controller => "plugin_images", :record_id => @record.id, :record_type => @record.class.name}) if PluginImage.can?(@logged_in_user, :create, :record => @record) %>
+						</td>
+					</tr>
+				</table>				
+			</div>
+		<% end %>
+			
+		
+		<% if images.size > 0 %>			
+			<div class="images" align=left>
+				<% if images.size > 0 %>
+						<% for image in images %>
+							<div class="image">
+								<%= render :partial => "plugins/record_menu", :locals => {:record => image, :options => {:preview => true, :date => false}} if image.can?(@logged_in_user, :edit) %> 									   																
+								<%= content_tag(:div, plugin_image_thumbnail(image, :preview => true)) %>														
+							</div>					
+						<% end %>
+				<% end %>
+			</div>
+	
+		<% else %>
+			<% if options[:show_none_found] %>
+					<%= t("label.items_none_added", :items => plugin.model_name.human(:count => :other)) %>
+			<% end %>
+		<% end %>
+</div>
+

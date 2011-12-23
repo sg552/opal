@@ -1,0 +1,14 @@
+<%= render :partial => "items/item_details", :locals => {:item => item} %>
+<div class="plugins">
+	<table style="width:100%">
+		<tr>
+			<td>
+				<%  for plugin in plugins  %>					
+					<% if plugin.plugin_class.can?(@logged_in_user, :view)  %>
+						<%= render :partial => plugin.partial_path(:type => "view"), :locals => {:plugin => plugin, :item => item} %>
+					<% end %>
+				<% end %>				
+			</td>
+		</tr>
+	</table>	
+</div>				

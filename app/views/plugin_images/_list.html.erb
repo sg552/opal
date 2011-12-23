@@ -1,0 +1,10 @@
+<% if PluginImage.can?(@logged_in_user, :view) %>
+	<div class="item_images_box">
+		<% images_count = PluginImage.record(item).approved.count %>
+		<% if images_count > 0  %>
+			<%= icon("image" ) %>
+			<%= link_to "#{images_count} #{plugin.model_name.human(:count => images_count)}", 		{:action => "view", :controller => "items", :id => item , :anchor => "#{plugin.model_name.human(:count => :other)}"}, :title => "" %>																								
+		<% end %>
+	</div>
+<% end %>
+

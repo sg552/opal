@@ -1,0 +1,12 @@
+<%# Dynamically find which locales are stored in config/locales and present them as a selection %>
+<%
+ # Set Defaults
+ options ||= Hash.new
+ options[:input_name] 	||= "locale"
+ options[:select] 		||= Setting.get_setting("locale")  # the locale to select
+%>
+<select name="<%= options[:input_name] %>">
+	<% I18n.available_locales.each do |locale| %>
+	     <option value="<%= locale %>" <%= "SELECTED" if locale == options[:select].to_sym %>><%= t("locales.#{locale}", :default => locale) %></option>
+	<% end %>	
+</select>

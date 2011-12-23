@@ -1,0 +1,4 @@
+<% if PluginFeatureValue.can?(@logged_in_user, :view) %>
+		<% feature_values = PluginFeatureValue.record(item).approved.newest_first %>
+		<%= render :partial => "plugin_features/list_values", :locals => {:feature_values => feature_values, :plugin => plugin, :item => item, :options => {:show_controls => false, :truncate_length => 22, :only_listed => true} } %>		
+<% end %>

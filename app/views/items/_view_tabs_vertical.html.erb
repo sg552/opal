@@ -1,0 +1,32 @@
+<%= render :partial => "items/item_details", :locals => {:item => item} %>
+<div class="plugins">
+
+	<div>
+		<table cellspacing=0 cellpadding=0 style="width:100%">
+			<tr>
+				<td>
+					<ul class="plugin_tabs_vertical"> 
+						<%  for plugin in plugins  %>
+							<% if plugin.plugin_class.can?(@logged_in_user, :view)  %>
+						    	<li><a href="#<%= plugin.model_name.human(:count => :other) %>"><%= plugin.model_name.human(:count => :other) %></a></li> 
+							<% end %>
+						<% end %>	
+					</ul>							
+				</td>
+				<td style="width:5px"></td>							
+				<td align=left style="width:100%">
+					<div class="plugin_panes_vertical"> 					
+						<%  for plugin in plugins  %>
+							<% if plugin.plugin_class.can?(@logged_in_user, :view)  %>
+							    <div>	
+									<%= render :partial => plugin.partial_path(:type => "view"), :locals => {:plugin => plugin, :item => item } %>
+								</div> 
+							<% end %>
+						<% end %>						
+					</div>								
+				</td>
+			</tr>
+		</table>						
+	</div>					
+	
+</div>				

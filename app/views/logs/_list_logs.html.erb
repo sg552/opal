@@ -1,0 +1,34 @@
+<% if logs.size > 0 %>
+	<div class="logs records">
+		<% for log in logs %>
+			<% log_item = log.item_id ? log.item : nil %>
+			<% log_user = log.user_id ? log.user : nil %>			
+			<div class="record log" id="log_<%= log.id %>">
+				<% content_for :record_menu_right do %>
+					<%= content_tag(:li, link_to_function(icon("dropdown") + " " + t("single.details"), "$('#log_details_#{log.id}').toggle()")) %>																										
+				<% end %>	
+				<%= render :partial => "record_menu", :locals => {:record => log, :options => {:edit => false, :delete => false, :date => true, :user => false}} %>
+										
+				<div id="log_details_<%= log.id %>" class="extra_options_box"  style="display:none;">
+					<%= Log.human_attribute_name(:ip) %>: <%= log.ip %>
+				</div>					
+				<table style="width:100%">
+					<tr>
+						<%= content_tag(:td, link_to_user(log_user, :avatar => true, :avatar_class => "medium", :name => false)) if log_user %>
+						<td style="width:100%;">																													
+							<%= content_tag(:span, log_message(log), :class => :message) %>
+						</td>
+						<td class="icon_column">
+							<%= log_icon(log) %>
+						</td>						
+					</tr>				
+				</table>							
+			</div>				
+			<hr>
+		<% end %>		
+	</div>
+<% else %>
+	<div align=center>		
+		<%= t("notice.items_not_found", :items => Log.model_name.human.pluralize) %>
+	</div>
+<% end%>

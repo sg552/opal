@@ -1,0 +1,4 @@
+<% if PluginLink.can?(@logged_in_user, :view) %>
+	<% first_link = PluginLink.record(item).approved.first %>
+	<%= link_to(icon("link") + " " + truncate(first_link.title, :length => 21), first_link.url, :title => first_link.title) if !first_link.nil? %>
+<% end %>

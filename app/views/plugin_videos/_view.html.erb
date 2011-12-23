@@ -1,0 +1,54 @@
+<% if item.can?(@logged_in_user, :edit) %>
+	<% videos = PluginVideo.record(item) %>
+<% else %>
+	<% videos = PluginVideo.record(item).approved %>
+<% end %>
+
+	<div class="plugin_box">
+		<a name="<%= plugin.model_name.human(:count => :other) %>"></a>		
+			<div class="header title">
+				<table style="width:100%" cellpadding=0 cellspacing=0>
+					<tr>
+						<td align=left>
+							<h2 class="title"><%= videos.size %> <%= plugin.model_name.human(:count => videos.size) %> </h2>										
+						</td>
+						<td align=right>
+							<% if PluginVideo.can?(@logged_in_user, :create, :record => @record, :record => @record) %>
+								<%= link_to icon("new") + " " + t("label.item_new", :item => plugin.model_name.human), {:action => "new", :controller => "plugin_videos", :id => item.id, :record_id => @record.id, :record_type => @record.class.name}, :class => "plugin_title_link" %>
+							<% end %>							
+						</td>
+					</tr>
+				</table>				
+			</div>	
+		<% if videos.size > 0  %>			
+			<% if @setting[:plugin_video][:video_display_mode] == "List" %>
+				<div class="videos">
+					<% for video in videos %>				
+						<div id="video_box_<%= video.id %>" class="video box_2">	
+							<%= render :partial => "plugins/record_menu", :locals => {:record => video, :options => {:preview => true}} if video.can?(@logged_in_user, :edit) %>						
+							<%= content_tag(:h3, link_to_function((video.title.blank? ? video.description.blank? ? video.id : video.description : video.title), "toggle_box('video_#{video.id}_content')", :id => "video_#{video.id}_link", :title => video.description)) %></h3>																												
+
+							<div style="display:none;" id="video_<%= video.id %>_content">								
+								<%= render video %>
+							</div>																										
+						</div>														
+					<% end %>					
+				</div >			
+			<% else %>	
+				<div class="videos">
+					<% for video in videos %>					
+						<div id="video_box_<%= video.id %>" class="video">							
+							<%= render :partial => "plugins/record_menu", :locals => {:record => video, :options => {:preview => true}} if video.can?(@logged_in_user, :edit) %>						
+							<h3 class="title"><%= video.title %></h3>																
+
+							<%= content_tag(:div, video.description, :class => "description") unless video.description.blank? %>
+							<br />
+							<%= render video %>
+						</div>														
+					<% end %>
+				</div>
+			<% end %>		
+		<% else %>
+			<%= t("label.items_none_added", :items => plugin.model_name.human(:count => :other)) %>
+		<% end %>
+	</div>

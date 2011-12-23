@@ -1,0 +1,20 @@
+<%= render :partial => "items/item_details", :locals => {:item => item} %>
+<div class="plugins">
+	<table style="width:100%">
+		<tr>
+			<td>
+				<div id="accordion">
+					<%  for plugin in plugins  %>
+						<% if plugin.plugin_class.can?(@logged_in_user, :view)  %>
+							<h2 class="accordion_tab <%= "current"  if plugin.id == plugins.first.id %>" ><%= plugin.model_name.human(:count => :other) %></h2>
+							
+							<div class="pane" <%= "style=\"display:block\""  if plugin.id == plugins.first.id %>>
+								<%= render :partial => plugin.partial_path(:type => "view"), :locals => {:plugin => plugin, :item => item } %>								
+							</div>
+						<% end %>
+					<% end %>
+				</div>				
+			</td>
+		</tr>
+	</table>	
+</div>				

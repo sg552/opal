@@ -1,0 +1,4 @@
+<% if PluginImage.can?(@logged_in_user, :view) %>
+	<% comments_count = PluginComment.record(item).approved.count %>
+	<%= link_to icon("comments") + " " + "#{comments_count} #{plugin.model_name.human(:count => comments_count)}", {:action => "view", :controller => "items", :id => item , :anchor => plugin.model_name.human(:count => :other)}, :title => "This #{Item.model_name.human} has #{comments_count} #{plugin.model_name.human(:count => :other)}" %>																							
+<% end %>

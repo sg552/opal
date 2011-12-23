@@ -1,0 +1,17 @@
+<% params[:type] ||= "Public" %>
+<div class="box_2 menu" align=center>
+	<h3 class="title" align=left><%= Page.model_name.human(:count => :other)  %></h3>
+	<div class="box_<%= params[:type].downcase == "public" ? "1" : "2" %>" >
+		<%= link_to link_to icon("pages") + " " + t('activerecord.models.public_page', :count => :other) + " (#{Page.public_pages.size})", {:action => "index", :controller => "pages", :type => "Public"} %>				
+	</div>	
+
+	<%  if @setting[:section_blog] %>
+	<div class="box_<%= params[:type].downcase == "blog" ? "1" : "2" %>" >		
+		<%= link_to icon("pages") + " " + t('activerecord.models.blog_page', :count => :other) + " (#{Page.blog_pages.size})", {:action => "index", :controller => "pages", :type => "Blog"} %>				
+	</div>	
+	<% end %>
+	
+	<div class="box_<%= params[:type].downcase == "system" ? "1" : "2" %> last">
+		<%= link_to link_to icon("pages") + " " + t('activerecord.models.system_page', :count => :other) + " (#{Page.system_pages.size})", {:action => "index", :controller => "pages", :type => "System"} %>			
+	</div>	
+</div>

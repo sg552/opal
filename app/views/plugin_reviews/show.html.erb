@@ -1,0 +1,16 @@
+<div class="item">
+	<%= record_header(@record) %>
+	<div class="header">					
+		<h2 class="title">
+			<%= PluginReview.model_name.human %> 
+			<%= t("single.from").downcase %>
+			<%= @review.user.username %>
+		</h2>						
+	</div>
+	<div class="plugin_box">
+		<div class="reviews">	
+	    	<%= render @review %>
+		</div>			
+	</div>										
+	<%= back %>	
+</div>
