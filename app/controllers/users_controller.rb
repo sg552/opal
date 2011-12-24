@@ -164,4 +164,5 @@ class UsersController < ApplicationController
   def verification_required
     @user = @logged_in_user
   end
+
 end

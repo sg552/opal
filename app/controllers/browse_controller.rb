@@ -16,6 +16,12 @@ class BrowseController < ApplicationController
   def user
     redirect_to :action => "show", :controller => "users", :id => params[:id]
   end
+
+  def get_banana
+    puts "now in action !!! hihihi"
+    @fruit="banana"
+    render :text => "hi, #{@fruit}"
+  end
   
   private  
 end

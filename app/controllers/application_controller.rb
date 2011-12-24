@@ -36,6 +36,7 @@ class ApplicationController < ActionController::Base
   end   
 
   def set_locale # set language, local time, etc.
+    puts "in set_locale"
    if params[:locale] # set in url 
     I18n.locale = params[:locale]
    else # not set in url
@@ -44,6 +45,7 @@ class ApplicationController < ActionController::Base
   end
     
   def load_settings
+    puts "now in load_settings" 
     @setting = Setting.global_settings 
     @setting[:theme] = params[:theme] if params[:theme] # preview theme if theme is specified in url
     prepend_view_path(File.join(@setting[:themes_dir], @setting[:theme],  "app", "views")) if @setting[:theme] && @setting[:themes_dir] # add the curent theme's view path to view paths to load
@@ -53,6 +55,7 @@ class ApplicationController < ActionController::Base
     @setting[:meta_title] << @setting[:description] if !@setting[:description].blank?
     @setting[:meta_title] << @setting[:title] if !@setting[:title].blank?
     @setting[:meta_description] = [@setting[:description]]
+    puts "@setting: #{@setting.inspect}"
   end
   
   def reload_settings # reload global settings
@@ -65,10 +68,14 @@ class ApplicationController < ActionController::Base
   
   # Authentication Functions
   def set_user
+    puts "now in set_user"
     @logged_in_user = current_user ? current_user : User.anonymous
+    puts "@logged_in_user: #{@logged_in_user.inspect}"
   end
     
   def check_public_access # check if public access is allowed to the app
+    puts "now in check_public_access"
+    puts "if condition: #{!@setting[:allow_public_access]}"
     authenticate_user if !@setting[:allow_public_access] # send user to login if public is not allowed to view the site
   end
   
@@ -238,6 +245,7 @@ private
   end
   
   def detect_flash
+    puts "detecting flash..."
     request.format = :flash if flash_request?
   end
   

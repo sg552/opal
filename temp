@@ -1,0 +1,8 @@
+customized my environtment: 
+  1. ignored swp file
+  2. migrate from sqlite3 to mysql2
+  3. added notice for the setting up steps for the DB error 
+  which was caused by a gem. 
+  4. added mail.rb in initializer folder
+  5. updated README.textile for my own
+  6. added db/schema.rb for mysql2
