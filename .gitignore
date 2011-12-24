@@ -60,3 +60,9 @@ vendor/plugins/plugin_*
 #Aptana project file
 .project
 
+config/config.yml
+log/*.log
+tmp
+**/*swp
+*swp
+

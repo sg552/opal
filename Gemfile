@@ -20,11 +20,9 @@ gem "humanizer", "=2.4.3"
 gem "cregexp"
 
 # Database Gems
-#gem "mysql2"
-gem 'sqlite3'
+gem "mysql2", "~> 0.3.11"
 
-group :development do
-end
+#gem 'sqlite3'
 
 group :assets do
   gem 'sass-rails', "  ~> 3.1.0"
@@ -34,6 +32,10 @@ group :assets do
 end
 
 group :test do
- gem "rspec-rails"
- gem "factory_girl_rails"
+  gem "rspec-rails"
+  gem "factory_girl_rails"
 end 
+
+group :development do 
+  gem "thin"
+end
