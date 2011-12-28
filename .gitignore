@@ -42,7 +42,7 @@ db/*.sqlite3
 !public/themes/white_square/*
 !public/themes/fracture/*
 !public/themes/vault/*
-public/themes/*
+# public/themes/*
 
 # Remove Any User-Uploaded Images or Files
 public/images/item_images/*
