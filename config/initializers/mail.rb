@@ -12,9 +12,7 @@ Rails.application.class.configure do
     end
   end
 
-#  config.action_mailer.default_url_options ||=  {:host => "localhost"} # set actionmailer default host 
-  config.action_mailer.default_url_options = { :host => 'localhost' }
-
+  config.action_mailer.default_url_options ||=  {:host => "localhost"} # set actionmailer default host 
 end
 
 
