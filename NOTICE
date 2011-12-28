@@ -4,4 +4,3 @@ rake db:drop
 don't work because of the gem "ancestry". so currently we have to
 set it up manually.
 
-2. balabala ( modified in my office)
