@@ -31,7 +31,6 @@
 		<% render homepage_sidebar if homepage_sidebar %>
 	<% end if show_sidebar %>
 	<%= content_tag :div, :id => (show_sidebar ? "main" : nil) do  %>
-        <%= render :file => "browse/slider" %>
 		<%= render homepage if homepage %>
 		<% if @setting[:homepage_type] == "new_items" && @setting[:section_items] %>
 			<%= render :partial => "browse/homepage_new_items" %>

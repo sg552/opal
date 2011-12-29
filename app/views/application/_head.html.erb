@@ -1,17 +1,23 @@
-<%= auto_discovery_link_tag(:rss, {:action => "rss", :controller => "items"}, {:title => "#{t("label.rss_feed")} - #{t("single.new").capitalize} #{Item.model_name.human(:count => :other)}"}) %> 
+<%= stylesheet_link_tag "photoshow.css" %>
+
+
+<%= auto_discovery_link_tag(:rss, {:action => "rss", :controller => "items"}, {:title => "#{t("label.rss_feed")} - #{t("single.new").capitalize} #{Item.model_name.human(:count => :other)}"}) %>
 
 <%= stylesheet_link_tag "application" %>
-<%= javascript_include_tag "application" %>	
+<%= javascript_include_tag "application" %>
 <%= render :partial => "javascript" %>
 
 <!-- Load Theme Files -->
 <%= stylesheet_link_tag "/themes/#{@setting[:theme]}/stylesheets/application.css" %>
 <%= javascript_include_tag "/themes/#{@setting[:theme]}/javascripts/application.js" %>
-<link rel="shortcut icon" href="/themes/<%= @setting[:theme] %>/images/favicon.ico"> 
+<link rel="shortcut icon" href="/themes/<%= @setting[:theme] %>/images/favicon.ico">
 
 <!-- Load Meta Data -->
 <title><%= @setting[:meta_title].reverse.flatten.join(" - ") %></title>
 <meta name="keywords" content="<%= @setting[:meta_title].reverse.flatten.join(", ") %>">
 <meta name="description" content="<%= @setting[:meta_description].nil? ? @setting[:meta_title].reverse.flatten.join(", ")  : @setting[:meta_description].reverse.flatten.join(", ") %>">
+
+<!-- slider -->
+<%= javascript_include_tag "photoshow.js" %>
 
 
