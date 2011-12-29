@@ -6,7 +6,7 @@ gem "russian", :path => File.expand_path("#{File.dirname(__FILE__)}/vendor/gems/
 gem "rmagick", "~>2.12.2"
 gem "i18n"
 gem "rubyzip"
-gem "ya2yaml" 
+gem "ya2yaml"
 gem "authlogic", ">=3.0.3"
 gem "ancestry"
 gem "will_paginate", ">= 3.0.pre2"
@@ -34,8 +34,9 @@ end
 group :test do
   gem "rspec-rails"
   gem "factory_girl_rails"
-end 
+end
 
-group :development do 
+group :development do
   gem "thin"
 end
+gem 'log4r', '1.1.9'

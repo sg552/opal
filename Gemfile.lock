@@ -254,6 +254,7 @@ DEPENDENCIES
   fog
   humanizer (= 2.4.3)
   i18n
+  log4r (= 1.1.9)
   make_voteable!
   mysql2 (~> 0.3.11)
   omniauth

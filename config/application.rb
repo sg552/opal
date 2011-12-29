@@ -1,6 +1,12 @@
 require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
+# add these line for log4r
+require 'log4r'
+require 'log4r/yamlconfigurator'
+require 'log4r/outputter/datefileoutputter'
+include Log4r
+
 
 # If you have a Gemfile, require the gems listed there, including any gems
 # you've limited to :test, :development, or :production.
@@ -11,7 +17,7 @@ if defined?(Bundler)
   # Bundler.require(:default, :assets, Rails.env)
 end
 
-module Opal  
+module Opal
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
@@ -39,16 +45,16 @@ module Opal
 
     # JavaScript files you want as :defaults (application.js is always included).
     # config.action_view.javascript_expansions[:defaults] = %w(jquery rails)
-    
+
     # Customize Sanitation
-    config.action_view.sanitized_allowed_tags = %w{img a table tr td th br b u i strong p span embed object param ul ol li blockquote pre div sub sup h1 h2 h3 h4 h5 h6 iframe}           
+    config.action_view.sanitized_allowed_tags = %w{img a table tr td th br b u i strong p span embed object param ul ol li blockquote pre div sub sup h1 h2 h3 h4 h5 h6 iframe}
     config.action_view.sanitized_allowed_attributes = %w{href title style width height allowfullscreen frameborder allowscriptaccess src type data name value align}
 
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"
 
     # Configure sensitive parameters which will be filtered from the log file.
-    config.filter_parameters += [:password]    
+    config.filter_parameters += [:password]
 
 
     # Enable the asset pipeline
@@ -60,16 +66,25 @@ module Opal
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
-    
+
     # Application Name
     def name
       I18n.t("name", :default => String.new)
     end
+
+    # assign log4r's logger as rails' logger.
+    log4r_config= YAML.load_file(File.join(File.dirname(__FILE__),"log4r.yml"))
+    YamlConfigurator.decode_yaml( log4r_config['log4r_config'] )
+    config.logger = Log4r::Logger[Rails.env]
+
+    # TODO remove this setting from test.rb and production.rb
+    config.action_mailer.default_url_options = { :host => 'localhost' }
+
   end
-  
+
   def self.tmpdir # tmp dir for Opal
     tmpdir = File.writable?(File.join(Dir::tmpdir)) ? File.join(Dir::tmpdir, Rails.application.name) : File.join(Rails.root.to_s, "tmp") # location of the tmp directory for file uploads, etc.
     FileUtils.mkdir_p(tmpdir) if !File.exists?(tmpdir) # create the tmp folder if it doesn't exist
-    tmpdir                 
+    tmpdir
   end
 end

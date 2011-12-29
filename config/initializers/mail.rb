@@ -1,7 +1,7 @@
 # Load Mail Settings from config/email.yml
-Rails.application.class.configure do 
+Rails.application.class.configure do
   config.action_mailer.raise_delivery_errors = false # report email errors?...usually overriden by config/environments/[environment]
-    
+
   if Rails.env != 'test'
     if File.exists?("#{Rails.root.to_s}/config/email.yml")
       config.action_mailer.delivery_method = :smtp
@@ -12,7 +12,8 @@ Rails.application.class.configure do
     end
   end
 
-  config.action_mailer.default_url_options ||=  {:host => "localhost"} # set actionmailer default host 
+  # set actionmailer default host
+  config.action_mailer.default_url_options ||=  {:host => "localhost"}
 end
 
 
