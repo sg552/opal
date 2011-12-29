@@ -19,5 +19,9 @@ RSpec.configure do |config|
   # Add Controller Specific Config (does not work)
   config.before(:each, :type => :controller) do
     #@request.env["HTTP_REFERER"] = "/"
-  end  
+  end
+
+  # added by Siwei, for a temp use.
+  config.fixture_path = "#{::Rails.root}/spec/fixtures/ymls"
+  config.global_fixtures = :all
 end
