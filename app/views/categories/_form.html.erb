@@ -2,12 +2,15 @@
 <div id="side">
 		<div class="box_2">
 				<h2 class="title">
-					<img src="/themes/<%= @setting[:theme] %>/images/icons/categories.png" class="icon" > 				
+					<img src="/themes/<%= @setting[:theme] %>/images/icons/categories.png" class="icon" >
 					<%= f.label :category_id  %>
-				</h2>	
-				<%= category_select_tag("category[category_id]", category.category_id, :id_to_ignore => category.id, :include_blank => true) %>																					
+				</h2>
+				<%= category_select_tag("category[category_id]",
+                  category.category_id,
+                  :id_to_ignore => category.id,
+                  :include_blank => true) %>
 			</div>
-			
+
 </div>
 <div id="main">
 	<table cellpadding=1 cellspacing=1>
@@ -20,6 +23,6 @@
 					<td><%= f.text_field :description %><!--<input name="category[description]" type="text" id="category_description_<%= category.id %>" onfocus = "focus_input('category_description_<%= category.id %>')" onblur = "blur_input('category_description_<%= category.id %>')" maxlength=255 value="<%= category.description %>" size=50>--></td>
 				</tr>
 	</table>
-				
-</div>		
-<div style="clear:both"></div>	
+
+</div>
+<div style="clear:both"></div>
