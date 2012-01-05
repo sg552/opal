@@ -22,6 +22,6 @@ RSpec.configure do |config|
   end
 
   # added by Siwei, for a temp use.
-  config.fixture_path = "#{::Rails.root}/spec/fixtures/ymls"
+  config.fixture_path = "#{::Rails.root}/spec/fixture_ymls"
   config.global_fixtures = :all
 end

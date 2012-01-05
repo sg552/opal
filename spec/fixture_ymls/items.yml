@@ -1,0 +1,9 @@
+one:
+  id: 1
+  name: first item
+  description: this is the 1st item written by Siwei
+  user_id: 1
+  category_id: 1
+#  is_approved: 
+#  is_public:
+#  featured: 

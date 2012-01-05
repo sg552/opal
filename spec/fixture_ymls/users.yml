@@ -1,0 +1,8 @@
+admin:
+  id: 1
+  username: admin
+  email: admin@gmail.com
+  first_name: Iam
+  last_name: admin
+  password_hash: 111
+
