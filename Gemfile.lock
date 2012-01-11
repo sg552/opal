@@ -250,7 +250,7 @@ DEPENDENCIES
   carrierwave
   coffee-rails (~> 3.1.0)
   cregexp
-  factory_girl_rails
+  factory_girl_rails (~> 1.2)
   fog
   humanizer (= 2.4.3)
   i18n
