@@ -1,0 +1,18 @@
+allow_public_access:
+  name: allow_public_access
+  setting_type: system
+  value: 1
+  item_type: bool
+
+theme:
+  name: theme
+  setting_type: Hidden
+  value: fracture
+  item_type: string
+
+list_type:
+  name: list_type
+  setting_type: Hidden
+  value: detailed
+  item_type: string
+

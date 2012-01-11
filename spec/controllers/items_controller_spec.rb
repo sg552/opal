@@ -138,8 +138,11 @@ describe ItemsController do
 
     describe "category" do
       it "should return 200" do
+
+    authenticate_user if !@setting[:allow_public_access]
         get :category, {:id =>  Factory(:category)}
         @response.code.should eq("200")
+#        response.should be_success
       end
     end
 
@@ -187,4 +190,20 @@ describe ItemsController do
     pending "set_list_type"
     pending "set_item_page_type"
   end
+
+
+
+    describe "category" do
+      it "should return 200" do
+        puts "Setting.all: #{Setting.all.inspect}"
+        #if !@setting[:allow_public_access]
+        #  puts "it's true"
+        #end
+#        authenticate_user if !@setting[:allow_public_access]
+        get :category, {:id =>  Factory(:category)}
+        puts "@setting: #{@setting.inspect}"
+        @response.code.should eq("200")
+#        response.should be_success
+      end
+    end
 end

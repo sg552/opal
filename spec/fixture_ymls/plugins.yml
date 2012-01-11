@@ -1,0 +1,18 @@
+Image:
+  name: Image
+
+Description:
+  name: Description
+
+Feature:
+  name: Feature
+Link:
+  name: Link
+Review:
+  name: Review
+Comment:
+  name: Comment
+File:
+  name: File
+Tag:
+  name: Tag

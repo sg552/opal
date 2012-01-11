@@ -68,18 +68,31 @@ class ApplicationController < ActionController::Base
     @logged_in_user = current_user ? current_user : User.anonymous
   end
 
-  def check_public_access # check if public access is allowed to the app
-    authenticate_user if !@setting[:allow_public_access] # send user to login if public is not allowed to view the site
+  # check if public access is allowed to the app
+  def check_public_access
+    # send user to login if public is not allowed to view the site
+    if !@setting[:allow_public_access]
+      authenticate_user
+    end
   end
 
   def authenticate_user(msg = t("notice.user_not_logged_in"))
-    if @logged_in_user.anonymous? # There's definitely no user logged in
+    # There's definitely no user logged in
+    if @logged_in_user.anonymous?
       flash[:failure] = "#{msg}"
-      redirect_to login_url(:redirect_to => destination) # store original request of where they wanted to go.
-    else #there's a user logged in, but what type is he?
-      if @logged_in_user.is_enabled? # Check if account is in good standing
-        redirect_to verification_required_path if !@logged_in_user.is_verified? && params[:action] != "verification_required"
-      else # not verified!
+      # store original request of where they wanted to go.
+      redirect_to login_url(:redirect_to => destination)
+
+    #there's a user logged in, but what type is he?
+    else
+      # Check if account is in good standing
+      if @logged_in_user.is_enabled?
+        if !@logged_in_user.is_verified? &&
+          params[:action] != "verification_required"
+          redirect_to verification_required_path
+        end
+      # not verified!
+      else
         flash[:failure] = t("notice.account_disabled")
         UserSession.find.destroy # log out
         redirect_to root_url
