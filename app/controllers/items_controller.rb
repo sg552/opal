@@ -209,16 +209,23 @@ class ItemsController < ApplicationController
     end
   end
 
- def tag
-   @tag = CGI::unescape(params[:tag])
-   @category = Category.find(params[:category_id]) if params[:category_id]
-   tags = @category ? PluginTag.category(@category).where(:name => @tag, :record_type => "Item") : PluginTag.where(:name => @tag, :record_type => "Item")
-   @items = Array.new # create container to hold items
-   for tag in tags
-     temp_item = tag.record # get the item that the tag points to
-     @items << temp_item # Throw item into array
-   end
- end
+  def tag
+    @tag = CGI::unescape(params[:tag])
+    @category = Category.find(params[:category_id]) if params[:category_id]
+    tags = @category ?
+      PluginTag.category(@category).where(
+        :name => @tag, :record_type => "Item") :
+      PluginTag.where(
+        :name => @tag, :record_type => "Item")
+    # create container to hold items
+    @items = Array.new
+    for tag in tags
+      # get the item that the tag points to
+      temp_item = tag.record
+      # Throw item into array
+      @items << temp_item
+    end
+  end
 
  def set_list_type # change the item list type
    if get_setting_bool("allow_item_list_type_changes")

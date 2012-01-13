@@ -2,22 +2,19 @@ require 'spec_helper'
 describe "how to use FactoryGirl"do
   it "should create a record" do
     user = FactoryGirl.create(:user)
-    puts "user.inspect: #{user.id}"
+    user.id.should > 0
     admin = FactoryGirl.build(:admin)
-    puts "admin.inspect: #{admin.id}"
+    admin.id.should == nil
   end
 
-  it "should show what is Factory(:xx)" do
+  it "should show what is Factory(:xx),
+    now I know that Factory(:xx) is a shortcut for: FactoryGirl.create(:xx)" do
     user = Factory(:user)
-    puts " after Factory(:user), #{user.id}"
+    user.id.should > 0
   end
 
   it "should show how many settings there" do
-    puts "Setting.all.size : #{Setting.all.size}"
     Setting.all.size.should > 0
   end
 
-  it "should show what is FActory(:category)" do
-    puts "Factory(:category): #{Factory(:category).inspect}"
-  end
 end
