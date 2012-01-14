@@ -106,19 +106,19 @@ describe ItemsController do
 
   context "as visitor" do
 
-    #describe "category" do
-    #  it "should return 200" do
-    #    get :category, {:id =>  Factory(:category)}
-    #    @response.code.should eq("200")
-    #  end
-    #end
+    describe "category" do
+      it "should return 200" do
+        get :category, {:id =>  Factory(:category)}
+        @response.code.should eq("200")
+      end
+    end
 
-    #describe "view" do
-    #  it "should return 200" do
-    #    get :view, {:id =>  Factory(:item_with_plugins)}
-    #    @response.code.should eq("200")
-    #  end
-    #end
+    describe "view" do
+      it "should return 200" do
+        get :view, {:id =>  Factory(:item_with_plugins)}
+        @response.code.should eq("200")
+      end
+    end
 
     #describe "rss" do
     #  it "should return 200" do
