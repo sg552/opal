@@ -157,15 +157,6 @@ describe ItemsController do
     #  end
     #end
 
-    describe "tag" do
-      it "should return 200" do
-        # TODO what's this?
-        item = Factory(:item_with_plugins)
-        puts "=== item: #{item.inspect}"
-        get :tag, {:tag =>  PluginTag.first.name}
-        @response.code.should eq("200")
-      end
-    end
 
     #describe "advanced_search" do
     #  it "should return 200" do
@@ -195,7 +186,14 @@ describe ItemsController do
     it "should return 200" do
       get :category, {:id =>  Factory(:category)}
       @response.code.should eq("200")
-#        response.should be_success
+    end
+  end
+  describe "tag" do
+    it "should return 200" do
+      # this is optional
+      FactoryGirl.create(:item_with_plugins)
+      get :tag, {:tag =>  PluginTag.first.name}
+      @response.code.should eq("200")
     end
   end
 

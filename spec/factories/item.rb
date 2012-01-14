@@ -17,12 +17,12 @@ Factory.define :item_with_plugins, :parent => :item do |o|
     o.plugin_comments = [Factory(:plugin_comment, :record => o)]
     o.plugin_descriptions = [Factory(:plugin_description, :record => o)]
     o.plugin_discussions = [Factory(:plugin_discussion, :record => o)]
-    o.plugin_feature_values = [Factory(:plugin_feature_value, :record => o)]    
+    o.plugin_feature_values = [Factory(:plugin_feature_value, :record => o)]
     o.plugin_files = [Factory(:plugin_file, :record => o)]
-    o.plugin_images = [Factory(:plugin_image, :record => o)]    
-    o.plugin_links = [Factory(:plugin_link, :record => o)]    
-    o.plugin_reviews = [Factory(:plugin_review, :record => o)]    
-    o.plugin_tags = [Factory(:plugin_tag, :record => o)]    
-    o.plugin_videos = [Factory(:plugin_video, :record => o)]        
+    o.plugin_images = [Factory(:plugin_image, :record => o)]
+    o.plugin_links = [Factory(:plugin_link, :record => o)]
+    o.plugin_reviews = [Factory(:plugin_review, :record => o)]
+    o.plugin_tags = [Factory(:plugin_tag, :record => o)]
+    o.plugin_videos = [Factory(:plugin_video, :record => o)]
   end
 end

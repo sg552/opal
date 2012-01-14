@@ -2,7 +2,7 @@ class Emailer < ActionMailer::Base
   default :from => "#{Setting.get_setting("site_title")} <#{Setting.get_setting("sender_email")}>"
   default :content_type => "text/plain" # not working in Rails 3.0.3 for some reason, must set inside mail()
   helper :plugins, :users, :items
-  
+
   def contact_us_email(email = "noemailset@none.com", name = "No Name Set", subject = "No Subject Set", phone = I18n.t("single.none"), message = "No Message Set", ip = "0.0.0.0")
     recipients = Emailer.admin_emails
     @message = message
@@ -23,7 +23,7 @@ class Emailer < ActionMailer::Base
     @setting = Setting.global_settings
     @user_verification = user_verification
 		@user = user
-		@url = url_for(:action => "verify", :controller => "user", :id => user_verification.id, :code => user_verification.code, :only_path => false)                                                         
+		@url = url_for(:action => "verify", :controller => "user", :id => user_verification.id, :code => user_verification.code, :only_path => false)
     subject = I18n.t("email.subject.verification", :name => @user.username, :title => @setting[:title])
     mail(:to => @user.email, :subject =>  subject, :date => Time.now)
   end
@@ -71,19 +71,25 @@ class Emailer < ActionMailer::Base
 
   def new_plugin_record_notification(record)
     @record = record
-    subject = I18n.t("email.subject.item_new_from_user", :item => record.class.model_name.human, :name => record.record.to_s, :title => Setting.global_settings[:title], :from => record.user ? record.user.to_s : nil)
-    mail(:to => record.record.user.email, :subject => subject, :date => Time.now)
+    subject = I18n.t("email.subject.item_new_from_user",
+      :item => record.class.model_name.human,
+      :name => record.record.to_s,
+      :title => Setting.global_settings[:title],
+      :from => record.user ? record.user.to_s : nil)
+    mail(:to => record.record.user.email,
+      :subject => subject,
+      :date => Time.now)
   end
 
   def plugin_comment_reply_notification(plugin_comment)
     @plugin_comment = plugin_comment
-    @setting = Setting.global_settings   
+    @setting = Setting.global_settings
     subject = I18n.t("email.subject.plugin_comment_reply_notification", :user => @plugin_comment.anonymous? ? @plugin_comment.anonymous_name : @plugin_comment.user.to_s)
-    recipient = @plugin_comment.parent.anonymous? ? @plugin_comment.parent.anonymous_email : @plugin_comment.parent.user.email   
-    mail(:to => recipient, :subject => subject, :date => Time.now)   
+    recipient = @plugin_comment.parent.anonymous? ? @plugin_comment.parent.anonymous_email : @plugin_comment.parent.user.email
+    mail(:to => recipient, :subject => subject, :date => Time.now)
   end
-  
-  
+
+
   private
 
   def self.admin_emails # get all admin email addresses

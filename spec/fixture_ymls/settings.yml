@@ -16,3 +16,9 @@ list_type:
   value: detailed
   item_type: string
 
+site_title:
+  name: site_title
+  setting_type: Public
+  value: website title
+  item_type: string
+

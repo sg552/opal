@@ -1,5 +1,10 @@
+# The Plugin Model is a unique one. Every Plugin object
+# record belongs to an associated Model with the same name
+# as the plugin object, so if the record's name is "Image",
+# it's associated model is PluginImage. This allows Opal to
+# organize Models of a particular type(so you can change
+# order, etc.).
 class Plugin < ActiveRecord::Base
-  # The Plugin Model is a unique one. Every Plugin object record belongs to an associated Model with the same name as the plugin object, so if the record's name is "Image", it's associated model is PluginImage. This allows Opal to organize Models of a particular type(so you can change order, etc.).
 
   validates_presence_of :name
   validates_uniqueness_of :name

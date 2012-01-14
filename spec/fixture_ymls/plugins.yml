@@ -1,18 +1,39 @@
 Image:
+  id: 1
   name: Image
 
 Description:
+  id: 2
   name: Description
 
 Feature:
+  id: 3
   name: Feature
+
 Link:
+  id: 4
   name: Link
+
 Review:
+  id: 5
   name: Review
+
 Comment:
+  id: 6
   name: Comment
+
 File:
+  id: 7
   name: File
+
 Tag:
+  id: 8
   name: Tag
+
+Discussion:
+  id: 9
+  name: Discussion
+
+Video:
+  id: 10
+  name: Video

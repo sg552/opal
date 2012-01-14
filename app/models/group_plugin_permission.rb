@@ -27,7 +27,8 @@ class GroupPluginPermission < ActiveRecord::Base
   end
 
   def self.for_plugin_and_group(plugin, group)
-    gpp = GroupPluginPermission.group(group).plugin(plugin).first
+    gpp = GroupPluginPermission.group(group).
+      plugin(plugin).first
     # initialize default permissions if no records are found.
     gpp ||= GroupPluginPermission.new(
       :plugin_id => plugin.id,

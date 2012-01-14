@@ -1,5 +1,5 @@
 <%= yield %>
 
 --
-<%= Page.get_system_page(I18n.t('seeds.page.email_footer.title')).content %>
+<%= Page.get_system_page(Page::NAME_EMAIL_FOOTER).try(:content) %>
 <%= Setting.global_settings[:title] %>
