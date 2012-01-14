@@ -1,0 +1,25 @@
+banner_top:
+  name: <%= Page::NAME_BANNER_TOP %>
+  page_type: system
+
+banner_bottom:
+  name: <%= Page::NAME_BANNER_BOTTOM %>
+  page_type: system
+new_item:
+  name: <%= Page::NAME_NEW_ITEM %>
+  page_type: system
+email_footer:
+  name: <%= Page::NAME_EMAIL_FOOTER %>
+  page_type: system
+homepage_sidebar:
+  name: <%= Page::NAME_HOMEPAGE_SIDEBAR%>
+  page_type: system
+website_top:
+  name: <%= Page::NAME_WEBSITE_TOP %>
+  page_type: system
+website_bottom:
+  name: <%= Page::NAME_WEBSITE_BOTTOM%>
+  page_type: system
+category_column:
+  name: <%= Page::NAME_CATEGORY_COLUMN %>
+  page_type: system

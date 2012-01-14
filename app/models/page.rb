@@ -80,9 +80,9 @@ class Page < ActiveRecord::Base
     where(:page_type => "blog").order("created_at DESC")
   end
 
-  def self.get_system_page(page_title) # retrieve system page by page title
-    Rails.logger.info "== before warning: getting page: #{page_title}"
-    system_pages.where(:title => page_title).first
+  # retrieve system page by page title
+  def self.get_system_page(page_title)
+    system_pages.where(:name => page_title).first
   end
 
   def self.get_public_page(page_title) # retrieve public page by page title

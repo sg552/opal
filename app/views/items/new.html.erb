@@ -5,13 +5,13 @@
 				<h2 class="title"><%= t("label.item_new", :item => Item.model_name.human) %></h2>
 			</td>
 			<td align=right>
-				<%= link_to raw("#{icon("edit")} #{t("label.item_edit", :item => Plugin.plugins[:feature].model_name.human(:count => :other))}"), {:action => "index", :controller => "plugin_features"} if @logged_in_user.is_admin?  %>			
-			</td>		
-		</tr>	
-	</table>		
+				<%= link_to raw("#{icon("edit")} #{t("label.item_edit", :item => Plugin.plugins[:feature].model_name.human(:count => :other))}"), {:action => "index", :controller => "plugin_features"} if @logged_in_user.is_admin?  %>
+			</td>
+		</tr>
+	</table>
 </div>
-<%= show_page Page.get_system_page(I18n.t('seeds.page.new_item.title')) %>
-   	
+<%= show_page Page.get_system_page(Page::NAME_NEW_ITEM) %>
+
 <%= form_for(@item, :url => { :action => 'create', :controller => "items"}, :method => "post") do |f| %>
 	<%= render :partial => "form", :locals => {:item => @item, :f => f} %>
 	<br>
@@ -24,4 +24,4 @@
 <br>
 <div align=center>
 	<%= link_to icon("arrow_left") + " " + t("single.back"), :back %>
-</div>	
+</div>

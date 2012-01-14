@@ -105,36 +105,6 @@ describe ItemsController do
   #end
 
   context "as visitor" do
-    #describe "index" do
-    #  it "GET index returns 200" do
-    #    get :index
-    #    response.code.should eq("200")
-    #  end
-
-    #  it "should work with detailed item list" do
-    #    Setting.find_by_name("list_type").update_attribute(:value, "detailed")
-    #    get :index
-    #    response.code.should eq("200")
-    #  end
-
-    #  it "should work with simple item list" do
-    #    Setting.find_by_name("list_type").update_attribute(:value, "simple")
-    #    get :index
-    #    response.code.should eq("200")
-    #  end
-
-    #  it "should work with photo item list" do
-    #    Setting.find_by_name("list_type").update_attribute(:value, "photo")
-    #    get :index
-    #    response.code.should eq("200")
-    #  end
-
-    #  it "should work with small item list" do
-    #    Setting.find_by_name("list_type").update_attribute(:value, "small")
-    #    get :index
-    #    response.code.should eq("200")
-    #  end
-    #end
 
     #describe "category" do
     #  it "should return 200" do
@@ -182,18 +152,44 @@ describe ItemsController do
   end
 
 
-  describe "category" do
-    it "should return 200" do
-      get :category, {:id =>  Factory(:category)}
-      @response.code.should eq("200")
-    end
+  it "should get category" do
+    get :category, {:id =>  Factory(:category)}
+    @response.code.should eq("200")
   end
-  describe "tag" do
-    it "should return 200" do
-      # this is optional
-      FactoryGirl.create(:item_with_plugins)
-      get :tag, {:tag =>  PluginTag.first.name}
-      @response.code.should eq("200")
+  it " should get tag" do
+    # this is optional, cause I have added fixtures manually.
+    FactoryGirl.create(:item_with_plugins)
+    get :tag, {:tag =>  PluginTag.first.name}
+    @response.code.should eq("200")
+  end
+  describe "index" do
+    it "GET index returns 200" do
+      get :index
+      response.code.should eq("200")
+    end
+
+    it "should work with detailed item list" do
+      Setting.find_by_name("list_type").update_attribute(:value, "detailed")
+      get :index
+      response.code.should eq("200")
+    end
+
+    it "should work with simple item list" do
+      Setting.find_by_name("list_type").update_attribute(:value, "simple")
+      get :index
+      response.code.should eq("200")
+    end
+
+    it "should work with photo item list" do
+      Setting.find_by_name("list_type").update_attribute(:value, "photo")
+      get :index
+      response.code.should eq("200")
+    end
+
+    it "should work with small item list" do
+      Setting.find_by_name("list_type").update_attribute(:value, "small")
+      get :index
+      response.code.should eq("200")
     end
   end
 
