@@ -1,101 +1,102 @@
-<% 
+<%
 	tab_index = Hash.new # hash to store tab id for each plugin
  	tab_counter = 0
 %>
 <script type="text/javascript">
-	function select_tab(index){ //index can be a 0-index integer or the name attribute for the anchor tab, ie: "Images" for name="#Images" 
+	function select_tab(index){ //index can be a 0-index integer or the name attribute for the anchor tab, ie: "Images" for name="#Images"
 		var api = $("ul.plugin_tabs_horizontal").data("tabs");
-		api.click(index);											
+		api.click(index);
 	}
 </script>
 
-<div align=left id="page_summarized">	
-	<div style="margin-bottom:10px;" id="top">		
+<div align=left id="page_summarized">
+	<div style="margin-bottom:10px;" id="top">
 				<div id="preview">
 					<%= preview(item) %>
-				</div>					
+				</div>
 				<div id="details">
 					<div class="name">
-						<%= item.name %>		
-					</div>								
+						<%= item.name %>
+					</div>
 					<div class="description">
-						<%= simple_format item.description unless item.description.blank? %>	
-					</div>													
+						<%= simple_format item.description unless item.description.blank? %>
+					</div>
 					<div id="features">
 						<% if Plugin.plugins[:feature].is_enabled? %>
-							<% 
-								features = PluginFeature.find(:all, :order => "order_number ASC") 
+							<%
+								features = PluginFeature.find(:all, :order => "order_number ASC")
 								if item.can?(@logged_in_user, :edit)
-									feature_values = PluginFeatureValue.record(item).all # show all values  
-								else 
+									feature_values = PluginFeatureValue.record(item).all # show all values
+								else
 									feature_values = PluginFeatureValue.record(item).approved.all # show only approved values
-								end  
-							%> 		
+								end
+							%>
 							<div class="box_2a">
 								<div class="features">
 									<%= render :partial => "plugin_features/list_values", :locals => {:feature_values => feature_values, :plugin => Plugin.plugins[:feature], :item => @item} %>
-								</div>	
+								</div>
 							</div>
-						<% end %>							
-					</div>		
+						<% end %>
+					</div>
 
 					<% if Plugin.plugins[:tag].is_enabled? %>
 						<%= tags_links(item) %>
-					<% end %>														
-				</div>				
-				<div id="side">					
+					<% end %>
+				</div>
+				<div id="side">
 					<%= content_tag :div, :class => "box_2" do %>
 						<% if Plugin.plugins[:review].is_enabled? %>
 								<% review_score = PluginReview.record(item).average(:review_score) %>
-								<% review_score ||= 0 %>										
-								<span>	
-									<%= link_to_function score(:type => @setting[:plugin_review][:review_type], :min => @setting[:plugin_review][:score_min].to_i, :max => @setting[:plugin_review][:score_max].to_i, :value => review_score),  "select_tab(\"#{Plugin.plugins[:review].model_name.human(:count => :other)}\")"  %>																			
-								</span>		
-								<%= tag(:hr) if Plugin.plugins[:comment].is_enabled?  %>					
+								<% review_score ||= 0 %>
+								<span>
+									<%= link_to_function score(:type => @setting[:plugin_review][:review_type], :min => @setting[:plugin_review][:score_min].to_i, :max => @setting[:plugin_review][:score_max].to_i, :value => review_score),  "select_tab(\"#{Plugin.plugins[:review].model_name.human(:count => :other)}\")"  %>
+								</span>
+								<%= tag(:hr) if Plugin.plugins[:comment].is_enabled?  %>
 						<% end %>
 						<% if Plugin.plugins[:comment].is_enabled? %>
-								<span>	
-									<%= link_to_function raw("#{icon("comments")} #{item.plugin_comments.size} #{PluginComment.model_name.human(:count => :other)}"), "select_tab(\"#{Plugin.plugins[:comment].model_name.human(:count => item.plugin_comments.size)}\")" %>						
-								</span>																			
-						<% end %>															
+								<span>
+									<%= link_to_function raw("#{icon("comments")} #{item.plugin_comments.size} #{PluginComment.model_name.human(:count => :other)}"), "select_tab(\"#{Plugin.plugins[:comment].model_name.human(:count => item.plugin_comments.size)}\")" %>
+								</span>
+						<% end %>
 					<% end if Plugin.plugins[:review].is_enabled? || Plugin.plugins[:comment].is_enabled?  %>
 					<% if Plugin.plugins[:link].is_enabled? %>
 						<% first_link = PluginLink.record(item).approved.first %>
-						<%= render :partial => "plugin_links/plugin_link", :locals => {:plugin_link => first_link,:options => {:controls => false}} if first_link %>						
-					<% end %>								
+						<%= render :partial => "plugin_links/plugin_link", :locals => {:plugin_link => first_link,:options => {:controls => false}} if first_link %>
+					<% end %>
 					<%= content_tag :div, :class => "box_2" do %>
 						<% if Plugin.plugins[:link].is_enabled? %>
 						<% end %>
 						<%= Item.human_attribute_name(:user_id) %>  <%= link_to_user(item.user, :avatar => true) %><br>
-					<% end %>												
+					<% end %>
 				</div>
 	</div>
 	<div style="clear:both;"></div>
 
 	<div class="plugins">
-		<table style="width:100%">
-			<tr>
-				<td>
-					<ul class="plugin_tabs_horizontal">
-						<%  for plugin in plugins  %>
-							<% if plugin.plugin_class.can?(@logged_in_user, :view) && (plugin.name != "Feature" && plugin.name != "Tag") %>
-						    	<li><a href="#<%= plugin.model_name.human(:count => :other) %>"><%= plugin.model_name.human(:count => :other) %></a></li>
-							<% end %> 
-						<% end %>	
-					</ul>			
-					<div class="plugin_panes_horizontal"> 					
-						<% for plugin in plugins %>
-							<% if plugin.plugin_class.can?(@logged_in_user, :view) && (plugin.name != "Feature" && plugin.name != "Tag") %>
-							    <div>	
-									<%= render :partial => plugin.partial_path(:type => "view"), :locals => {:plugin => plugin, :item => item} %>
-								</div> 
-							<% end %>
-						<% end %>						
-					</div>					
-				</td>
-			</tr>
-		</table>	
-	</div>					
+      <table style="width:100%">
+        <tr>
+          <td>
+            <ul class="plugin_tabs_horizontal">
+<%  for plugin in plugins  %>
+    <% if plugin.plugin_class.can?(@logged_in_user, :view) &&
+      (plugin.name != "Feature" && plugin.name != "Tag") %>
+        <li><a href="#<%= plugin.model_name.human(:count => :other) %>"><%= plugin.model_name.human(:count => :other) %></a></li>
+    <% end %>
+<% end %>
+            </ul>
+            <div class="plugin_panes_horizontal">
+              <% for plugin in plugins %>
+                <% if plugin.plugin_class.can?(@logged_in_user, :view) && (plugin.name != "Feature" && plugin.name != "Tag") %>
+                  <div>
+                    <%= render :partial => plugin.partial_path(:type => "view"), :locals => {:plugin => plugin, :item => item} %>
+                  </div>
+                <% end %>
+              <% end %>
+            </div>
+          </td>
+        </tr>
+      </table>
+	</div>
 
 </div>
 

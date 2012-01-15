@@ -1,3 +1,18 @@
-group:
-  name: admin's group
-  description: admin's group
+the_public:
+  id: 1
+  name: The Public
+  description: People visiting your site that aren't logged in.
+  is_deletable: false
+
+regular_users:
+  id: 2
+  name: Regular Users
+  description: Regular Users that have signed up at your site.
+  is_deletable: false
+
+admins:
+  id: 3
+  name: Admins
+  description: Supreme Masters. They can access and do anything.
+  is_deletable: false
+

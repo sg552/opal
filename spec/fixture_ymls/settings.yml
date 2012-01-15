@@ -22,3 +22,8 @@ site_title:
   value: website title
   item_type: string
 
+item_page_type:
+  name: item_page_type
+  setting_type: Hidden
+  value: summarized
+  item_type: string

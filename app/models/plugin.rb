@@ -118,8 +118,10 @@ class Plugin < ActiveRecord::Base
     end
   end
 
-  def plugin_class # get the class that this plugin record is tied to
-    "Plugin#{self.name.capitalize}".constantize
+  # get the class that this plugin record is tied to
+  def plugin_class
+    result = "Plugin#{self.name.capitalize}".constantize
+    return result
   end
 
   alias :klass :plugin_class

@@ -158,7 +158,9 @@ class User < ActiveRecord::Base
 
   # generate anonymous user
   def self.anonymous
-    u = User.new(:username => "Guest", :first_name => "No", :last_name => "Name")
+    u = User.new(:username => "Guest",
+      :first_name => "No",
+      :last_name => "Name")
     u.id = 0
     # set for public group
     u.group_id = 1
