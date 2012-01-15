@@ -1,25 +1,33 @@
 banner_top:
   name: <%= Page::NAME_BANNER_TOP %>
   page_type: system
+  order_number: 0
 
 banner_bottom:
   name: <%= Page::NAME_BANNER_BOTTOM %>
   page_type: system
+  order_number: 1
 new_item:
   name: <%= Page::NAME_NEW_ITEM %>
   page_type: system
+  order_number: 2
 email_footer:
   name: <%= Page::NAME_EMAIL_FOOTER %>
   page_type: system
+  order_number: 3
 homepage_sidebar:
   name: <%= Page::NAME_HOMEPAGE_SIDEBAR%>
   page_type: system
+  order_number: 4
 website_top:
   name: <%= Page::NAME_WEBSITE_TOP %>
   page_type: system
+  order_number: 5
 website_bottom:
   name: <%= Page::NAME_WEBSITE_BOTTOM%>
   page_type: system
+  order_number: 6
 category_column:
   name: <%= Page::NAME_CATEGORY_COLUMN %>
   page_type: system
+  order_number: 7
