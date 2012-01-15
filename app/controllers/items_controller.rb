@@ -41,14 +41,19 @@ class ItemsController < ApplicationController
     end
   end
 
-  def all_items # show all items in system
-    if params[:type] == "unapproved" # show unapproved items
+  # show all items in system
+  def all_items
+    # show unapproved items
+    if params[:type] == "unapproved"
       @items = Item.paginate :page => params[:page], :per_page => @setting[:items_per_page], :order => Item.sort_order(params[:sort]), :conditions => ["is_approved = '0'"]
-    elsif params[:type] == "approved" # show only approved, public items
+    # show only approved, public items
+    elsif params[:type] == "approved"
       @items = Item.paginate :page => params[:page], :per_page => @setting[:items_per_page], :order => Item.sort_order(params[:sort]), :conditions => ["is_public = '1' and is_approved = '1'" ]
-    elsif params[:type] == "private" # show only private items
+    # show only private items
+    elsif params[:type] == "private"
       @items = Item.paginate :page => params[:page], :per_page => @setting[:items_per_page], :order => Item.sort_order(params[:sort]), :conditions => ["is_public = '0'" ]
-    else # show all items
+    # show all items
+    else
       params[:type] = t("single.all")
       @items = Item.paginate(:page => params[:page], :per_page => @setting[:items_per_page]).order(Item.sort_order(params[:sort]))
     end
@@ -277,7 +282,9 @@ class ItemsController < ApplicationController
   end
 
   def set_preview
-    if @item.update_attributes(:preview_type => params[:preview_type], :preview_id => params[:preview_id])
+    if @item.update_attributes(
+      :preview_type => params[:preview_type],
+      :preview_id => params[:preview_id])
       flash[:success] = t("notice.save_success")
     else
       flash[:failure] = t("notice.save_failure")

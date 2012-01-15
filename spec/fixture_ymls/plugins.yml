@@ -1,39 +1,49 @@
 Image:
   id: 1
   name: Image
+  is_builtin: true
 
 Description:
   id: 2
   name: Description
+  is_builtin: true
 
 Feature:
   id: 3
   name: Feature
+  is_builtin: true
 
 Link:
   id: 4
   name: Link
+  is_builtin: true
 
 Review:
   id: 5
   name: Review
+  is_builtin: true
 
 Comment:
   id: 6
   name: Comment
+  is_builtin: true
 
 File:
   id: 7
   name: File
+  is_builtin: true
 
 Tag:
   id: 8
   name: Tag
+  is_builtin: true
 
 Discussion:
   id: 9
   name: Discussion
+  is_builtin: true
 
 Video:
   id: 10
   name: Video
+  is_builtin: true

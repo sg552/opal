@@ -27,3 +27,15 @@ item_page_type:
   setting_type: Hidden
   value: summarized
   item_type: string
+
+max_items_per_user:
+  name: max_items_per_user
+  setting_type: Item
+  value: 0
+  item_type: string
+
+list_type:
+  name: list_type
+  setting_type: Hidden
+  value: detailed
+  item_type: string
