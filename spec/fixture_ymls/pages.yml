@@ -31,3 +31,10 @@ category_column:
   name: <%= Page::NAME_CATEGORY_COLUMN %>
   page_type: system
   order_number: 7
+
+home:
+  name: <%= Page::NAME_HOME %>
+  page_type: public
+  order_number: 8
+
+

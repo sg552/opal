@@ -7,6 +7,7 @@ class Page < ActiveRecord::Base
   NAME_NEW_ITEM = "new_item"
   NAME_BANNER_BOTTOM = "banner_bottom"
   NAME_BANNER_TOP = "banner_top"
+  NAME_HOME = "home"
   has_ancestry if Page.table_exists? && column_names.include?("ancestry")
 
   has_many :pages

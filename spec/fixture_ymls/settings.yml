@@ -40,3 +40,8 @@ locale:
   value: en
   item_type: special
 
+homepage_type:
+  name: homepage_type
+  setting_type: Hidden
+  value: new_items
+  item_type: string
