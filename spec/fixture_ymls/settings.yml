@@ -10,12 +10,6 @@ theme:
   value: fracture
   item_type: string
 
-list_type:
-  name: list_type
-  setting_type: Hidden
-  value: detailed
-  item_type: string
-
 site_title:
   name: site_title
   setting_type: Public
@@ -39,3 +33,10 @@ list_type:
   setting_type: Hidden
   value: detailed
   item_type: string
+
+locale:
+  name: locale
+  setting_type: Public
+  value: en
+  item_type: special
+

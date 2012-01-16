@@ -2,7 +2,7 @@ Factory.define :user do |o|
   o.first_name 'John'
   o.last_name  'Doe'
   o.sequence(:username) { |n| "test#{n}" }
-  o.group  FactoryGirl.create(:group)
+  o.group 3 # FactoryGirl.create(:group)
   o.password   'test'
   o.sequence(:email) { |n| "test#{n}@test.com" }
   o.is_admin   '0'

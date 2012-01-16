@@ -1,8 +1,12 @@
 admin:
   id: 1
-  username: admin
-  email: admin@gmail.com
-  first_name: Iam
+  username: admin3
+  email: admin@gmail.com3
+  first_name: Iam2
   last_name: admin
-  password_hash: 111
+  group_id: 3
+
+  # password:  admin
+  password_hash: 7beeb30f01536d48ff9a7cb10443073726b2534756f54797892d5d2cad9e9d95
+  salt: sGnYwfDpQU2QYfSlbaPmvPLgBHHNapscFIxUA3MmuHcUBaCc7HmxeX0Zuz7Dw073
 

@@ -6,7 +6,8 @@
  options[:select] 		||= Setting.get_setting("locale")  # the locale to select
 %>
 <select name="<%= options[:input_name] %>">
-	<% I18n.available_locales.each do |locale| %>
-	     <option value="<%= locale %>" <%= "SELECTED" if locale == options[:select].to_sym %>><%= t("locales.#{locale}", :default => locale) %></option>
-	<% end %>	
+  <% I18n.available_locales.each do |locale| %>
+     <option value="<%= locale %>" <%= "SELECTED" if locale == options[:select].to_sym %>>
+     <%= t("locales.#{locale}", :default => locale) %></option>
+  <% end %>
 </select>

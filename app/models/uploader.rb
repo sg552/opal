@@ -226,6 +226,7 @@ class Uploader #< ActiveRecord::Base
   # options[:image_width] ||= @plugin.get_setting("item_image_width").to_i        ||= 500 # resized image width
   # as:  options[:image_width] ||= defautl_value(a, b)
   def self.default_value(candidate1, candidate2)
-    !candidate1.blank? ? candidate1 : candidate2
+    result = !candidate1.blank? ? candidate1 : candidate2
+    return result.to_i
   end
 end
