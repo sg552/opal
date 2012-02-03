@@ -1,10 +1,90 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-	<%= render :partial => "head" %>
+  <%= render :partial => "head" %>
 </head>
 
 <body>
+<div id="top">
+  <div id="topbar">
+    <div id="user_log_style"><a href="#">denglu</a> | <a href="#">zhuce</a> | <a href="#">gouwuche</a> |
+    <a href="#">contact us</a></div>
+  </div>
+</div>
+<div id="warp">
+  <div id="header">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td width="24%"><a href="#"><img src="<%= asset_path "logo.jpg" %>" width="293" height="86" alt="Logo" /></a></td> <td width="76%"></td> </tr>
+    </table>
+
+  </div>
+  <div id="search_bar">
+    <table width="100%" border="0">
+      <tr height="28">
+        <td width="29%"><form id="form1" name="form1" method="post" action="">
+            <INPUT style=" height:27px; width:320px; margin-left:15px; font-size:14px;color:#999; margin-top:9px;"
+        onblur="if(this.value==''){this.value='grey_text';this.style.color='#aaa'}"
+        onfocus="if(this.value=='grey_text'){this.value='';this.style.color='#666'}"
+        value=grey_text name=keyword>
+          </form></td>
+        <td width="71%" align="left"><p style="margin-top:10px; height:30px;"> <a href="#">
+          <img src="<%= asset_path "search_button.jpg" %>" /></a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div id="content">
+    <div id="left_box">
+      <div class="title">Bao Bei Nian ling</div>
+<!-------------------------------------- side bar starts -->
+      <div id="sidebar">
+        <div class="sidelist">
+          <span> <h3 class=""><a href="#">&gt; 0-3 sui</a></h3> </span>
+          <div class="i-list" style="display: none;">
+            <div class="menu_title"><a href="#">0-3 </a>
+            </div>
+            <div style=" width:100%;">
+              <ul>
+                <li><a href="#">maorong</a></li>
+                <li><a href="#">maorong</a></li>
+                <li><a href="#">maorong</a></li>
+                <li><a href="#">maorong</a></li>
+                <li><a href="#">maorong</a></li>
+              </ul>
+            </div>
+            <div class="clean"></div>
+            <div class="menu_info_title">small tips: </div>
+            <div class="menu_info">ooxx</div>
+          </div>
+        </div>
+        <div class="clean">&nbsp; </div>
+      </div>
+<!-------------------------------------- side bar ends  -->
+<!--   HOT products starts -->
+      <div style="width:100%; margin-top:5px; height:auto; border:1px #e0edb5 solid;">
+        <div style="28px; background-image:url(images/barbg2.jpg); background-repeat:repeat-x;">
+          <h7 style="margin-left:15px; line-height:28px;">HOT PRODUCTS</h7>
+        </div>
+        <ul style=" margin:20px;">
+          <li><img src="<%= asset_path "hot_vendors/maisika.jpg "%> " width="120" height="50" /></li>
+          <li><img src="<%= asset_path "hot_vendors/muwanshj.jpg "%> " width="120" height="50" /></li>
+          <li><img src="<%= asset_path "hot_vendors/qianhao.jpg "%> " width="120" height="50" /></li>
+
+          <li><img src="<%= asset_path "hot_vendors/upload_2008327135431.jpg "%> " width="150" height="60" /></li>
+          <li><img src="<%= asset_path "hot_vendors/upload_2011328173157.jpg "%> " width="100" height="28" /></li>
+          <li><img src="<%= asset_path "hot_vendors/whalefun.JPG "%> " width="120" height="50" /></li>
+        </ul>
+      </div>
+<!--   HOT products ends -->
+    </div>
+    <div id="right_box">
+    </div>
+  </div>
+  <div class="clean">&nbsp;</div>
+  <div id="footer">THIS IS THE FOOTER</div>
+</div>
+
+<h3> ========= </h3>
 <div id="wrapper">
 	<%= render :partial => "header" %>
 	<div id="content">
