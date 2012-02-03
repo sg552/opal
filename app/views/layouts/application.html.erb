@@ -7,8 +7,30 @@
 <body>
 <div id="top">
   <div id="topbar">
-    <div id="user_log_style"><a href="#">denglu</a> | <a href="#">zhuce</a> | <a href="#">gouwuche</a> |
-    <a href="#">contact us</a></div>
+    <div id="user_log_style">
+      <% if !@logged_in_user.anonymous? %>
+       <%= user_avatar(@logged_in_user, :class => "tiny") %>
+       <%= t("label.logged_in_as", :name => @logged_in_user.username) %>
+       <%= icon("spacer") %>
+       <%= link_to t("section.title.my_account"), user_home_path %>
+       <% if @logged_in_user.is_admin? %>
+          <%= icon("spacer") %>
+          <%= link_to t("section.title.admin"), admin_path %>
+       <% end %>
+       <%= icon("spacer") %>
+       <%= link_to t("label.log_out"), logout_path %>
+       <%= render :partial => "help" if Setting.get_setting_bool("display_help_sections")  %>
+      <% else %>
+          <%= link_to(t("label.log_in"), login_path(:redirect_to => current_url)) if Setting.get_setting_bool("show_user_login") %>
+          <% if @setting[:allow_user_registration] %>
+              <%= icon("spacer") %>
+              <%= link_to t("label.register"), {:action => "register", :controller => "user"} %>
+          <% end %>
+      <% end %>
+
+		 <%= render :partial => "user/menu" if @show_user_menu %>
+		 <%= render :partial => "admin/menu" if @show_admin_menu %>
+    </div>
   </div>
 </div>
 <div id="warp">
@@ -20,18 +42,32 @@
 
   </div>
   <div id="search_bar">
+    <%= form_tag({:action => 'search', :controller => "items"},{:id => "search_form", :method => :get}) do %>
     <table width="100%" border="0">
       <tr height="28">
-        <td width="29%"><form id="form1" name="form1" method="post" action="">
-            <INPUT style=" height:27px; width:320px; margin-left:15px; font-size:14px;color:#999; margin-top:9px;"
-        onblur="if(this.value==''){this.value='grey_text';this.style.color='#aaa'}"
-        onfocus="if(this.value=='grey_text'){this.value='';this.style.color='#666'}"
-        value=grey_text name=keyword>
-          </form></td>
-        <td width="71%" align="left"><p style="margin-top:10px; height:30px;"> <a href="#">
-          <img src="<%= asset_path "search_button.jpg" %>" /></a></p></td>
+        <td width="29%">
+          <INPUT style=" height:27px; width:320px; margin-left:15px; font-size:14px;color:#999; margin-top:9px;"
+            onblur="if(this.value==''){this.value='grey_text';this.style.color='#aaa'}"
+            onfocus="if(this.value=='grey_text'){this.value='';this.style.color='#666'}"
+            name="search_for" type="text" id="search_box" value="grey_text"
+            />
+        </td>
+        <td width="71%" align="left"><p style="margin-top:10px; height:30px;">
+          <a href="#" id="submit_icon"><img src="<%= asset_path "search_button.jpg" %>" /></a></p>
+          <%= submit_tag t("single.search"), :class => "button_1", :id => "search_button", :style=>"display:none" %>
+          <%# link_to icon("rss", "#{t("label.rss_feed")} - #{t("single.new").capitalize} #{Item.model_name.human(:count => :other)}") ,  {:action => "rss", :controller => "items", :format => :xml}, :class => "transparent" %>
+          <%# link_to "#{t("single.advanced")} #{t("single.search")}", {:action => "advanced_search", :controller => "items"} %>
+          <script type="text/javascript">
+$(document).ready(function(){
+  $("#submit_icon").click(function(){
+    $("#search_form").submit()
+  })
+})
+          </script>
+        </td>
       </tr>
     </table>
+    <% end %>
   </div>
   <div id="content">
     <div id="left_box">
@@ -62,7 +98,7 @@
 <!-------------------------------------- side bar ends  -->
 <!--   HOT products starts -->
       <div style="width:100%; margin-top:5px; height:auto; border:1px #e0edb5 solid;">
-        <div style="28px; background-image:url(images/barbg2.jpg); background-repeat:repeat-x;">
+        <div style="28px; background-image: url(<%= asset_path "barbg2.jpg"  %>); background-repeat:repeat-x;">
           <h7 style="margin-left:15px; line-height:28px;">HOT PRODUCTS</h7>
         </div>
         <ul style=" margin:20px;">
