@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120111111131) do
+ActiveRecord::Schema.define(:version => 20120202154831) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -233,6 +233,15 @@ ActiveRecord::Schema.define(:version => 20120111111131) do
     t.string   "file"
   end
 
+  create_table "plugin_generic_items", :force => true do |t|
+    t.string  "uuid"
+    t.string  "child_age_scope"
+    t.string  "scores"
+    t.text    "tip"
+    t.string  "record_type"
+    t.integer "record_id"
+  end
+
   create_table "plugin_images", :force => true do |t|
     t.integer  "user_id"
     t.string   "width",                    :default => "0"
@@ -292,6 +301,15 @@ ActiveRecord::Schema.define(:version => 20120111111131) do
     t.string   "options"
   end
 
+  create_table "plugin_specific_items", :force => true do |t|
+    t.string  "vendor_name"
+    t.string  "price"
+    t.text    "word_of_mouth"
+    t.string  "delivery_method"
+    t.string  "record_type"
+    t.integer "record_id"
+  end
+
   create_table "plugin_tags", :force => true do |t|
     t.integer  "user_id"
     t.integer  "parent_id",                :default => 0
@@ -325,6 +343,24 @@ ActiveRecord::Schema.define(:version => 20120111111131) do
     t.datetime "updated_at"
     t.string   "is_enabled",   :limit => 1, :default => "1"
     t.string   "is_builtin",   :limit => 1, :default => "0"
+  end
+
+  create_table "plugins_generic_items", :force => true do |t|
+    t.string  "uuid"
+    t.string  "child_age_scope"
+    t.string  "scores"
+    t.text    "tip"
+    t.string  "record_type"
+    t.integer "record_id"
+  end
+
+  create_table "plugins_specific_items", :force => true do |t|
+    t.string  "vendor_name"
+    t.string  "price"
+    t.text    "word_of_mouth"
+    t.string  "delivery_method"
+    t.string  "record_type"
+    t.integer "record_id"
   end
 
   create_table "sessions", :force => true do |t|

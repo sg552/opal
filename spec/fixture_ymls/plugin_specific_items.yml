@@ -1,0 +1,9 @@
+one:
+  id: 1
+  vendor_name: Taobao
+  price: 200
+  word_of_mouth: very good
+  delivery_method: EMS
+  record_type: Item
+  record_id: 1
+

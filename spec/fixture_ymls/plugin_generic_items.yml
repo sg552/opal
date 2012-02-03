@@ -1,0 +1,8 @@
+one:
+  id: 1
+  uuid: ooxxoox
+  child_age_scope: 3-10
+  scores: A,B,C
+  tip: balabalabla ,very good
+  record_type: Item
+  record_id: 1
