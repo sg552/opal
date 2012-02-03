@@ -1,0 +1,228 @@
+*{margin:0;padding:0;}
+#sidebar{width:209px;height:auto; border:1px solid #6bb22e; background:#EFD;}
+#sidebar h3{padding-left:50px;}
+.sidelist{position:relative;z-index:1;height:32px;width:210px;}
+.sidelist span h3{;
+	position:relative;
+	z-index:2;
+	height:32px;
+	line-height:28px;
+	margin-top:5px;
+	font-size:14px;
+	font-weight:normal;
+}
+.sidelist span h3 a{font-size:14px;text-decoration:none;display:block;width:auto;height:auto;color:#000;}
+.sidelist span h3 a:hover{color:#060;}
+.i-list{display:none;position:absolute;z-index:1;left:209px;top:-20px;width:410px;height:auto;padding:15px;background:#FFF;border:1px solid #6bb22e; border-right:6px solid #6bb22e;}
+.i-list ul li{width:auto; margin:3px 10px;float:left;line-height:24px;height:24px;}
+.i-list ul li a{color:#036;text-decoration:none;font-size:12px;}
+.i-list ul li a:hover{text-decoration:underline;color:#F90;}
+
+.hover{border:1px solid #6bb22e;border-left:0; border-right:0; width:160px;background:#FFF;}
+
+.menu_title {margin:0 10px; border-bottom:1px #ACD0B5 solid; height:24px; font-weight:bold;}
+.menu_info {margin:6px 10px; font-size:12px; line-height:18px;color:#060;}
+.menu_info_title {margin:0 10px; margin-top:15px; font-size:14px; font-weight:bold;}
+
+/* copied from the page */
+body {
+    margin:0;
+    background:#FFF;
+}
+.clean {
+    clear:both;
+}
+#top {
+    width:100%;
+    background:#f5f5f5;
+    height:auto;
+}
+#user_log_style {
+    width:1024px;
+    height:25px;
+    font-size:12px;
+    line-height:25px;
+    margin:0 auto;
+    text-align:right;
+}
+#topbar {
+    width:1024px;
+    margin:0 auto;
+    height:25px;
+}
+#warp {
+    width:1024px;
+    margin:0 auto;
+    background:#FFF;
+    height:auto;
+}
+#header {
+    width:100%;
+    height:90px;
+    background:#FFF;
+}
+#header_icon_module {
+    width:100%;
+    height:90px;
+    margin:0;
+}
+#header_icon_module ul {
+    margin:0;
+    width:100%;
+    float:left;
+}
+#header_icon_module ul li {
+    margin-left:1px;
+    margin-bottom:10px;
+    background:#FFF;
+    border:1px #e0edb5 solid;
+}
+#search_bar {
+    width:100%;
+    height:50px;
+    background:#9bcf32;
+}
+#content {
+    width:100%;
+    height:auto;
+    margin-top:5px;
+}
+#left_box {
+    width:210px;
+    height:auto;
+    float:left;
+}
+.title {
+    width:196px;
+    height:30px;
+    padding-left:15px;
+    background:#6bb22e;
+    text-align:left;
+    font-size:14px;
+    line-height:30px;
+    color:#FFF;
+    font-weight:bold;
+}
+#right_box {
+    width:810px;
+    height:auto;
+    float:right;
+}
+.view {
+    width:100%;
+}
+.view_left {
+    width:580px;
+    height:239px;
+    float:left;
+}
+.view_right {
+    width:226px;
+    margin-top:2px;
+    font-size:12px;
+    height:240px;
+    background:f1fdcd;
+    float:right;
+}
+.pro {
+    width:100%;
+    height:auto;
+}
+.tab_name {
+    font-size:14px;
+    margin:8px 5px;
+    font-weight:bold;
+    color:#036;
+}
+.pro_box_01 {
+    width:100%;
+    font-size:12px;
+    color:#666;
+    margin-bottom:10px;
+}
+.note {
+    color:#060;
+    height:auto;
+    width:auto;
+    margin:0 15px;
+}
+.note li {
+    list-style-image:url(images/list_icon.gif);
+    margin:0 30px;
+    height:24px;
+}
+#product_info_style {
+    font-size:12px;
+}
+#product_info_style a {
+    color:#F60;
+}
+#product_info_style dl {
+    width:144px;
+    height:auto;
+    padding:5px;
+    float:left;
+}
+#product_info_style dl dt {
+    width:100%;
+    height:auto;
+    margin:10px 5px;
+}
+#product_info_style dl dt img {
+    width:130px;
+    height:130px;
+    background:#FFF;
+    padding:2px;
+    border:1px solid #EBEBEB;
+}
+#product_info_style dl dd {
+    width:130px;
+    margin:0 auto;
+    height:auto;
+}
+#footer {
+    width:100%;
+    height:120px;
+    background:#d3e0ad;
+}
+li {
+    list-style:none;
+}
+#tab1, #tab2, #tab3 {
+    width:810px;
+    height:30px;
+    border:1px #dedfda solid;
+    border-bottom:0;
+    background: url(images/barbg.jpg) repeat-x;
+}
+#tab1 ul, #tab2 ul, #tab3 ul {
+    margin:0;
+    padding:0;
+}
+#tab1 li, #tab2 li, #tab3 li {
+    float:left;
+    padding:0 30px;
+    height:30px;
+    line-height:30px;
+    text-align:center;
+    border-right:1px #e0edb5 solid;
+    cursor:pointer;
+}
+#tab1 li.now, #tab2 li.now, #tab3 li.now {
+    color:#6bb22e;
+    background:#fff;
+}
+.tablist {
+    width:810px;
+    height:420px;
+    padding-top:20px;
+    font-size:12px;
+    line-height:22px;
+    color:#336633;
+    border:1px #e0edb5 solid;
+    border-top:0;
+    display:none;
+}
+.block {
+    display:block;
+}

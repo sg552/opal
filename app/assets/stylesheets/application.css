@@ -1,8 +1,10 @@
 /* ...
-*= require jquery.tools
-*= require colorbox
-*= require uploadify
-*= require authentication
-*= require flowplayer
-*= require_tree .
+*= NOT  require jquery.tools
+*= NOT  require colorbox
+*= NOT  require uploadify
+*= NOT  require authentication
+*= NOT  require flowplayer
+*= require css.css
+*= require photoshow.css
+*= NOT require_tree .
 * */
