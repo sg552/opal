@@ -2,6 +2,7 @@
 module Opal
   module ActsAsOpalPlugin
     module ClassMethods
+      # this is a finder method
       def record(record)
         where(:record_id => record.id, :record_type => record.class.name)
       end

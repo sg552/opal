@@ -1,0 +1,14 @@
+<%
+	options ||= Hash.new
+    # show title?
+	options[:show_title] = true if options[:show_title].nil?
+    # show message if no plugin items are found
+	options[:show_none_found] = true if options[:show_none_found].nil?
+%>
+
+<% specific_item = PluginSpecificItem.record(item).newest_first%>
+
+<div class="plugin_box">
+  this is the content of SpecificItem
+</div>
+

@@ -120,6 +120,8 @@ class Plugin < ActiveRecord::Base
 
   # get the class that this plugin record is tied to
   def plugin_class
+    return PluginGenericItem if self.name.include?("GenericItem")
+    return PluginSpecificItem if self.name.include?("SpecificItem")
     result = "Plugin#{self.name.capitalize}".constantize
     return result
   end

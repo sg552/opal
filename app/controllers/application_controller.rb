@@ -19,12 +19,22 @@ class ApplicationController < ActionController::Base
   def layout_location # this will eventually be deprecated, in favor of prepend_view_path
     # Load Theme & Layout
     mobile_mode? ? layout_filename = "application.mobile.erb" : layout_filename = "application.html.erb"
-    if ActiveRecord::Base.connection.tables.include?('settings') # check if settings table exists
+    # check if settings table exists
+    if ActiveRecord::Base.connection.tables.include?('settings')
       #theme = Setting.get_setting("theme") # get the theme name
       theme = @setting[:theme]
-      layout_location = File.join(Rails.root.to_s, "public", "themes", theme, "layouts", layout_filename) # set path to theme layout
+      # set path to theme layout
+      Rails.logger.info "theme: #{theme}"
+      Rails.logger.info "layout_filename: #{layout_filename}"
+
+      layout_location = File.join(
+        Rails.root.to_s, "public", "themes",
+        theme,
+        "layouts",
+        layout_filename)
       logger.info(layout_location)
-      if !File.exists?(layout_location) # if the theme's layout file isn't present, use default layout. File.exists? requires absolute path.
+      # if the theme's layout file isn't present, use default layout. File.exists? requires absolute path.
+      if !File.exists?(layout_location)
         logger.info(layout_location)
         layout_location = File.join("layouts", layout_filename) # Use the default layout, keep the global theme as it is.
       end

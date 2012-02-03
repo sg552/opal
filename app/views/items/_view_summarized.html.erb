@@ -86,9 +86,11 @@
             </ul>
             <div class="plugin_panes_horizontal">
               <% for plugin in plugins %>
-                <% if plugin.plugin_class.can?(@logged_in_user, :view) && (plugin.name != "Feature" && plugin.name != "Tag") %>
+                <% if plugin.plugin_class.can?(@logged_in_user, :view) &&
+                  (plugin.name != "Feature" && plugin.name != "Tag") %>
                   <div>
-                    <%= render :partial => plugin.partial_path(:type => "view"), :locals => {:plugin => plugin, :item => item} %>
+                    <%= render :partial => plugin.partial_path(:type => "view"),
+                      :locals => {:plugin => plugin, :item => item} %>
                   </div>
                 <% end %>
               <% end %>

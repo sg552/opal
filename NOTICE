@@ -6,3 +6,10 @@ set it up manually.
 
 commit for 3rd time
 
+opal_plugin: (PluginGenericItem)
+1. need to call "acts_as_opal_plugin"
+2. need to register as Plugin  (insert record to "plugins" table)
+3. need to implement the accessibility.
+4. need to add the partial file.
+5. need to make sure the "plugin.rb" file passed test (method: plugin_class).
+
