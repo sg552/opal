@@ -18,12 +18,12 @@
 	<%= render Page.get_system_page(Page::NAME_CATEGORY_COLUMN) %>
 </div>
 <div id="main">
-		<% items_page =  Page.find_by_name("items") %>
-		<% render items_page if items_page %>
-		<%= render :partial => "/items/list_items", :locals => {:items => @items } %>
-		<div class="pagination">
-			<%= page_entries_info @items, :entry_name => Item.model_name.human %>
-			<%= will_paginate @items %>
-		</div>
+  <% items_page =  Page.find_by_name("items") %>
+  <% render items_page if items_page %>
+  <%= render :partial => "/items/list_items", :locals => {:items => @items } %>
+  <div class="pagination">
+      <%= page_entries_info @items, :entry_name => Item.model_name.human %>
+      <%= will_paginate @items %>
+  </div>
 </div>
 

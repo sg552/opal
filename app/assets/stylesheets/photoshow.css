@@ -9,12 +9,11 @@ table{
 em,i,u{ font-style:normal;}
 a{ text-decoration:none;color:#434343;}
 a:hover{ text-decoration:underline; color:#ff4000;}
-/*body{font-size:12px; font-family:"宋体";color:#434343;}*/
 .clear{clear:both;  font-size:0; overflow:hidden; height:0;}
 .blank10{clear:both;  font-size:0; overflow:hidden; height:10px;}
 .blank{clear:both;  font-size:0; overflow:hidden; height:10px; background:#FFF;}
-/*********content css定义***********/
-#content2{width:960px;margin:0 auto;}
+/*********content css***********/
+#content2{width:700px;margin:0 auto;}
 h1,h2,h3{ font-family:"微软雅黑";color:#00659b;}
 h1,h2,h3,h4,h5,h6{
 	height:24px;

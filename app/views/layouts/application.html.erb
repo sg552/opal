@@ -29,7 +29,7 @@
       <% end %>
 
 		 <%= render :partial => "user/menu" if @show_user_menu %>
-		 <%= render :partial => "admin/menu" if @show_admin_menu %>
+		 <%# render :partial => "admin/menu" if @show_admin_menu %>
     </div>
   </div>
 </div>
@@ -114,8 +114,6 @@ $(document).ready(function(){
 <!--   HOT products ends -->
     </div>
     <div id="right_box">
-      <%= render :partial => "user/menu" if @show_user_menu %>
-      <%= render :partial => "admin/menu" if @show_admin_menu %>
       <%= yield %>
       <% if @show_user_menu || @show_admin_menu %>
         <%# Close Tab Div in Menu Partial %>
