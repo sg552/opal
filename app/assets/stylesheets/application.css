@@ -4,7 +4,7 @@
 *= NOT  require uploadify
 *= NOT  require authentication
 *= NOT  require flowplayer
-*= require css.css
+*= require css.css.erb
 *= require photoshow.css
 *= NOT require_tree .
 * */

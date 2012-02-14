@@ -1,3 +1,21 @@
+
+<script type="text/javascript">
+function setTab(m,n){
+  var menu=document.getElementById("tab"+m).getElementsByTagName("li");
+  var showdiv=document.getElementById("tablist"+m).getElementsByTagName("div");
+  for(i=0;i<menu.length;i++)
+  {
+    menu[i].className=i==n?"now":"";
+    showdiv[i].style.display=i==n?"block":"none";
+  }
+}
+$(document).ready(function(){
+  setTab(1,0)
+  setTab(2,0)
+  setTab(3,0)
+});
+</script>
+
 <%
 	homepage =  Page.find_by_name("home")
 	homepage_sidebar =  Page.get_system_page(Page::NAME_HOMEPAGE_SIDEBAR)
@@ -59,14 +77,32 @@
         </ul>
       </div>
     </div>
-    <%= render homepage if homepage %>
-    <% if @setting[:homepage_type] == "new_items" && @setting[:section_items] %>
+    <%# render homepage if homepage %>
+
+    <!-- now should render the products -->
+    <div id="items_for_all" style="height:auto; width: 100%">
+    <!-- items by age -->
+      <%= render :partial => "items/with_5_items_in_1_row",
+        :locals => { :title => "By Age", :tab_index => 1 } %>
+    <!-- items by like & dislike -->
+      <%= render :partial => "items/with_5_items_in_1_row",
+        :locals => { :title => "By List&Dislike", :tab_index => 2 } %>
+    <!-- items by popular-->
+      <%= render :partial => "items/with_5_items_in_1_row",
+        :locals => { :title => "By Popular", :tab_index => 3 } %>
+
+    <!-- items to be REMOVED -->
+    <% if false #  @setting[:homepage_type] == "new_items" && @setting[:section_items] %>
+      <!-- rendered homepage_new_items -->
       <%= render :partial => "browse/homepage_new_items" %>
-    <% elsif @setting[:homepage_type] == "categories" && @setting[:section_items] %>
+    <% elsif false # @setting[:homepage_type] == "categories" && @setting[:section_items] %>
+      <!-- rendere homepage_categories -->
       <%= render :partial => "browse/homepage_categories" %>
     <% else %>
+      <!-- rendered nothing -->
       <%# Display nothing %>
     <% end %>
+    <!-- items_for_all ends -->
+    </div>
   </div>
-
 

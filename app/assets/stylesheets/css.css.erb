@@ -147,7 +147,7 @@ body {
     margin:0 15px;
 }
 .note li {
-    list-style-image:url(images/list_icon.gif);
+    list-style-image:url( <%= asset_path "list_icon.gif" %> );
     margin:0 30px;
     height:24px;
 }
@@ -193,7 +193,7 @@ li {
     height:30px;
     border:1px #dedfda solid;
     border-bottom:0;
-    background: url(images/barbg.jpg) repeat-x;
+    background: url( <%= asset_path 'barbg.jpg' %>) repeat-x;
 }
 #tab1 ul, #tab2 ul, #tab3 ul {
     margin:0;
