@@ -9,7 +9,7 @@
   <div id="topbar">
     <div id="user_log_style">
       <% if !@logged_in_user.anonymous? %>
-       <%= user_avatar(@logged_in_user, :class => "tiny") %>
+       <%# user_avatar(@logged_in_user, :class => "tiny") %>
        <%= t("label.logged_in_as", :name => @logged_in_user.username) %>
        <%= icon("spacer") %>
        <%= link_to t("section.title.my_account"), user_home_path %>
@@ -37,7 +37,7 @@
   <div id="header">
     <table width="100%" border="0" cellspacing="0" cellpadding="0">
       <tr>
-        <td width="24%"><a href="#"><img src="<%= asset_path "logo.jpg" %>" width="293" height="86" alt="Logo" /></a></td> <td width="76%"></td> </tr>
+        <td width="24%"><a href="<%= root_path %>"><img src="<%= asset_path "logo.jpg" %>" width="293" height="86" alt="Logo" /></a></td> <td width="76%"></td> </tr>
     </table>
 
   </div>
