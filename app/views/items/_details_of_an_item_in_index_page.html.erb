@@ -1,9 +1,16 @@
+<% # var: item
+  item_link = "/items/view/#{item.id}-#{item.name}"
+%>
 <dl>
-  <dt><a href="#"><%= image_tag "demo.jpg"%></a>
+  <dt>
+    <%= link_to image_tag("demo.jpg"), item_link %>
   </dt>
-  <dd><h4><a href="#">its category.name</a></h4>
+  <dd>
+    <h4>
+      <%= link_to item.name, item_link %>
+    </h4>
   </dd>
-  <dd>Price: $30-80</dd>
+  <dd>Price: <%# item.price_scope%> $30-80</dd>
   <dd>score: **** </dd>
   <dd>
     <%= image_tag "pk_icon.png", :style=>" width: 60px; height: 18px" %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120203100345) do
+ActiveRecord::Schema.define(:version => 20120215141715) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -302,12 +302,14 @@ ActiveRecord::Schema.define(:version => 20120203100345) do
   end
 
   create_table "plugin_specific_items", :force => true do |t|
-    t.string  "vendor_name"
     t.string  "price"
     t.text    "word_of_mouth"
     t.string  "delivery_method"
     t.string  "record_type"
     t.integer "record_id"
+    t.integer "vendor_id"
+    t.string  "source_website_name"
+    t.text    "source_url"
   end
 
   create_table "plugin_tags", :force => true do |t|
@@ -343,24 +345,6 @@ ActiveRecord::Schema.define(:version => 20120203100345) do
     t.datetime "updated_at"
     t.string   "is_enabled",   :limit => 1, :default => "1"
     t.string   "is_builtin",   :limit => 1, :default => "0"
-  end
-
-  create_table "plugins_generic_items", :force => true do |t|
-    t.string  "uuid"
-    t.string  "child_age_scope"
-    t.string  "scores"
-    t.text    "tip"
-    t.string  "record_type"
-    t.integer "record_id"
-  end
-
-  create_table "plugins_specific_items", :force => true do |t|
-    t.string  "vendor_name"
-    t.string  "price"
-    t.text    "word_of_mouth"
-    t.string  "delivery_method"
-    t.string  "record_type"
-    t.integer "record_id"
   end
 
   create_table "sessions", :force => true do |t|
@@ -459,6 +443,11 @@ ActiveRecord::Schema.define(:version => 20120203100345) do
     t.string   "current_login_ip"
     t.string   "salt"
     t.string   "avatar"
+  end
+
+  create_table "vendors", :force => true do |t|
+    t.string "name"
+    t.string "website"
   end
 
   create_table "votings", :force => true do |t|

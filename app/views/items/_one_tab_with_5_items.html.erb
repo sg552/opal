@@ -1,3 +1,4 @@
+
 <div class="tablist block">
   <ul class="note">
     <li> =========note note note </li>
@@ -10,11 +11,10 @@
     <tr>
       <td>
         <span id="product_info_style">
-          <%= render :partial => "items/details_of_an_item_in_index_page" %>
-          <%= render :partial => "items/details_of_an_item_in_index_page" %>
-          <%= render :partial => "items/details_of_an_item_in_index_page" %>
-          <%= render :partial => "items/details_of_an_item_in_index_page" %>
-          <%= render :partial => "items/details_of_an_item_in_index_page" %>
+        <% items = Item.all %>
+        <% items.each do | item | %>
+          <%= render :partial => "items/details_of_an_item_in_index_page", :locals => {:item => item} %>
+        <% end %>
         </span>
       </td>
     </tr>

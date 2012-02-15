@@ -4,6 +4,7 @@ class PluginSpecificItem < ActiveRecord::Base
 
   belongs_to :plugin
   belongs_to :user
+  belongs_to :vendor
 
   validates_presence_of :title, :url
 
