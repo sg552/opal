@@ -1,0 +1,12 @@
+<%= form_for @specific_item do |f| %>
+  Price: <%= f.text_field :price %><br/>
+  Word of mouth: <%= f.text_field :word_of_mouth %><br/>
+  Delivery Method: <%= f.text_field :delivery_method %><br/>
+  vendor_id : <br/>
+  source website: <%= f.text_field :source_website_name %> <br/>
+  source url: <%= f.text_field :source_url %> <br/>
+  <%= f.hidden_field :record_type %><br/>
+  <%= f.hidden_field :record_id %><br/>
+  <%= f.submit %>
+<% end %>
+

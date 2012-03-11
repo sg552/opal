@@ -5,4 +5,23 @@
   <!-- commented out the original page -->
   <%# render :partial => "items/view_#{@setting[:item_page_type]}",
     :locals => {:item => @item, :plugins => Plugin.enabled} %>
+  <h2>Generice item info </h2>
+  name: <%= @item.name %> <br/>
+  child age scope: <%= @item.plugin_generice_item.try(:child_age_scope) %> <br/>
+  Tips : <%= @item.plugin_generice_item.try :tip %> <br/>
+
+  <h3>Specific Items</h3>
+  <%= link_to "[Add specific item]", new_plugin_specific_item_path(:record_type => "Item",
+    :record_id => @item.id )%>
+
+  <ul >
+  <% @item.plugin_specific_items.each do |specific_item| %>
+    <li> $<%= specific_item.price %>, koubei: <%=specific_item.word_of_mouth %>,
+      delivery_method: <%= specific_item.delivery_method %>,
+      Source website: <%= specific_item.source_website_name %>,
+      <%= link_to("[Details]", specific_item.source_url ) %>,
+      <%= link_to_function "[Edit]", "#" %></li>
+  <% end %>
+  </ul>
 </div>
+
